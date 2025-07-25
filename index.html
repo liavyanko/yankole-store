@@ -53,6 +53,21 @@
       font-size: 16px;
       box-sizing: border-box;
     }
+    .quantity-controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 6px;
+    }
+    .quantity-controls button {
+      padding: 4px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #eee;
+      cursor: pointer;
+    }
     input[type="number"] {
       min-width: 100px;
       width: 100%;
@@ -172,7 +187,6 @@
     <div id="shipping-note"></div>
   </div>
 
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
     let products = [];
 
@@ -182,6 +196,44 @@
         products = data;
         buildTable();
       });
+
+    function createQuantityControl(product, index) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'quantity-controls';
+
+      const minus = document.createElement('button');
+      minus.textContent = '-';
+      const input = document.createElement('input');
+      input.type = 'number';
+      input.min = product.is_weighted ? 0.5 : 1;
+      input.step = product.is_weighted ? 0.25 : 1;
+      input.value = '';
+      input.id = `quantity-${index}`;
+
+      const plus = document.createElement('button');
+      plus.textContent = '+';
+
+      minus.onclick = () => {
+        let val = parseFloat(input.value) || 0;
+        val = Math.max(parseFloat(input.min), val - parseFloat(input.step));
+        input.value = val.toFixed(2);
+        input.dispatchEvent(new Event('input'));
+      };
+
+      plus.onclick = () => {
+        let val = parseFloat(input.value) || 0;
+        val += parseFloat(input.step);
+        input.value = val.toFixed(2);
+        input.dispatchEvent(new Event('input'));
+      };
+
+      input.addEventListener('input', updateTotal);
+
+      wrapper.appendChild(minus);
+      wrapper.appendChild(input);
+      wrapper.appendChild(plus);
+      return wrapper;
+    }
 
     function buildTable() {
       const container = document.getElementById('product-table');
@@ -206,14 +258,8 @@
         row.appendChild(priceCell);
 
         const quantityCell = document.createElement('td');
-        const input = document.createElement('input');
-        input.type = 'number';
-        input.min = product.is_weighted ? 0.5 : 1;
-        input.step = product.is_weighted ? 0.25 : 1;
-        input.value = '';
-        input.id = `quantity-${index}`;
-        input.addEventListener('input', updateTotal);
-        quantityCell.appendChild(input);
+        const control = createQuantityControl(product, index);
+        quantityCell.appendChild(control);
         row.appendChild(quantityCell);
 
         table.appendChild(row);
@@ -234,11 +280,11 @@
 
       const region = document.getElementById('region').value;
       let shipping = 0;
-      if (["שרון", "מרכז"].includes(region)) shipping = 10;
-      else if (region === "תל אביב") shipping = 20;
-      else if (region === "חיפה") shipping = 30;
-      else if (region === "צפון") shipping = 35;
-      else if (region === "אחר") document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
+      if (['שרון', 'מרכז'].includes(region)) shipping = 10;
+      else if (region === 'תל אביב') shipping = 20;
+      else if (region === 'חיפה') shipping = 30;
+      else if (region === 'צפון') shipping = 35;
+      else if (region === 'אחר') document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
       else document.getElementById('shipping-note').textContent = '';
 
       document.getElementById('total').textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
@@ -250,53 +296,6 @@
         promoContainer.style.display = 'none';
         document.getElementById('promo').value = '';
       }
-    }
-
-    function sendToWhatsApp() {
-      const fullname = document.getElementById('fullname');
-      const phone = document.getElementById('phone');
-      const address = document.getElementById('address');
-      const region = document.getElementById('region');
-
-      let hasError = false;
-      [fullname, phone, address, region].forEach(field => {
-        if (!field.value.trim() || !field.checkValidity()) {
-          field.classList.add('error');
-          hasError = true;
-        } else {
-          field.classList.remove('error');
-        }
-      });
-
-      if (hasError) {
-        alert("נא למלא את כל שדות החובה בפורמט תקין לפני שליחה");
-        return;
-      }
-
-      let message = `הזמנה מ-ינקול'ה:%0A`;
-      message += `שם: ${fullname.value.trim()}%0A`;
-      message += `טלפון: ${phone.value.trim()}%0A`;
-      message += `כתובת: ${address.value.trim()}%0A`;
-      message += `אזור מגורים: ${region.value}%0A`;
-
-      message += `%0Aמוצרים:%0A`;
-      products.forEach((product, index) => {
-        const qty = parseFloat(document.getElementById(`quantity-${index}`).value);
-        if (!isNaN(qty) && qty > 0) {
-          message += `- ${product.name} × ${qty} = ${(qty * product.price).toFixed(2)} ₪%0A`;
-        }
-      });
-
-      const notes = document.getElementById('notes').value;
-      if (notes) message += `%0Aהערות: ${notes}%0A`;
-
-      const promo = document.getElementById('promo').value;
-      if (promo) message += `%0Aהטבה נבחרה: ${promo} ₪%0A`;
-
-      const totalText = document.getElementById('total').textContent;
-      message += `%0A${totalText}%0A`;
-
-      window.open(`https://wa.me/972509369944?text=${message}`);
     }
   </script>
 </body>
