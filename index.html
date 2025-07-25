@@ -55,9 +55,16 @@
     }
     .quantity-controls {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
+    }
+    .quantity-controls-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
     }
     .quantity-controls button {
       padding: 4px 10px;
@@ -69,7 +76,7 @@
       cursor: pointer;
     }
     input[type="number"] {
-      min-width: 75px;
+      min-width: 60px;
       max-width: 90px;
       width: 100%;
       text-align: center;
@@ -202,8 +209,12 @@
       const wrapper = document.createElement('div');
       wrapper.className = 'quantity-controls';
 
-      const minus = document.createElement('button');
-      minus.textContent = '-';
+      const plus = document.createElement('button');
+      plus.textContent = '+';
+
+      const row = document.createElement('div');
+      row.className = 'quantity-controls-row';
+
       const input = document.createElement('input');
       input.type = 'number';
       input.min = product.is_weighted ? 0.5 : 1;
@@ -211,23 +222,31 @@
       input.value = '';
       input.id = `quantity-${index}`;
 
-      const plus = document.createElement('button');
-      plus.textContent = '+';
+      const minus = document.createElement('button');
+      minus.textContent = '-';
 
       minus.onclick = () => {
         let val = parseFloat(input.value);
+        const step = parseFloat(input.step);
+        const min = parseFloat(input.min);
         if (isNaN(val)) return;
-        val = Math.max(parseFloat(input.min), val - parseFloat(input.step));
-        input.value = val.toFixed(2);
+        if (val <= min) {
+          input.value = '';
+        } else {
+          val -= step;
+          input.value = val.toFixed(2);
+        }
         input.dispatchEvent(new Event('input'));
       };
 
       plus.onclick = () => {
         let val = parseFloat(input.value);
+        const min = parseFloat(input.min);
+        const step = parseFloat(input.step);
         if (isNaN(val)) {
-          val = parseFloat(input.min);
+          val = min;
         } else {
-          val += parseFloat(input.step);
+          val += step;
         }
         input.value = val.toFixed(2);
         input.dispatchEvent(new Event('input'));
@@ -235,9 +254,11 @@
 
       input.addEventListener('input', updateTotal);
 
-      wrapper.appendChild(minus);
-      wrapper.appendChild(input);
       wrapper.appendChild(plus);
+      row.appendChild(input);
+      row.appendChild(minus);
+      wrapper.appendChild(row);
+
       return wrapper;
     }
 
