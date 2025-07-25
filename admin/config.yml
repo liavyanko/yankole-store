@@ -1,4 +1,3 @@
-
 backend:
   name: git-gateway
   branch: main
@@ -10,10 +9,20 @@ collections:
   - name: "products"
     label: "Products"
     folder: "products"
+    extension: "json"
+    format: "json"
     create: true
     slug: "{{slug}}"
+    identifier_field: "name"
     fields:
-      - { label: "Product Name", name: "title", widget: "string" }
-      - { label: "Price", name: "price", widget: "number" }
-      - { label: "Is Weighted", name: "is_weighted", widget: "boolean" }
-      - { label: "Description", name: "body", widget: "markdown" }
+      - label: "שם המוצר"
+        name: "name"
+        widget: "string"
+      - label: "מחיר (ליחידה/ק״ג)"
+        name: "price"
+        widget: "number"
+        value_type: "float"
+        step: 0.01
+      - label: "שקיל"
+        name: "is_weighted"
+        widget: "boolean"
