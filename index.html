@@ -89,11 +89,18 @@
     .button:hover {
       background: #388e3c;
     }
+    #total-container {
+      position: sticky;
+      bottom: 0;
+      background: #fff;
+      padding: 10px;
+      border-top: 2px solid #ccc;
+      text-align: center;
+      z-index: 100;
+    }
     #total {
       font-size: 20px;
       font-weight: bold;
-      margin-top: 20px;
-      text-align: center;
     }
     #shipping-note {
       margin-top: 10px;
@@ -148,8 +155,10 @@
     <label for="notes">הערות</label>
     <textarea id="notes" rows="3"></textarea>
 
-    <div id="total">סה"כ: 0 ₪</div>
-    <div id="shipping-note"></div>
+    <div id="total-container">
+      <div id="total">סה"כ: 0 ₪</div>
+      <div id="shipping-note"></div>
+    </div>
 
     <button class="button" onclick="sendToWhatsApp()">שלח הזמנה בוואטסאפ</button>
   </main>
