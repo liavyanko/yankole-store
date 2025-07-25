@@ -55,16 +55,17 @@
     }
     .quantity-controls {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      justify-content: center;
       align-items: center;
       gap: 4px;
     }
-    .buttons-row {
+    .quantity-controls .buttons-column {
       display: flex;
-      gap: 6px;
-      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
     }
-    .buttons-row button {
+    .quantity-controls button {
       padding: 4px 10px;
       font-size: 16px;
       font-weight: bold;
@@ -74,7 +75,7 @@
       cursor: pointer;
     }
     .quantity-controls input[type="number"] {
-      width: 70px;
+      width: 60px;
       text-align: center;
       font-size: 16px;
     }
@@ -99,11 +100,21 @@
       width: 100%;
       border-collapse: collapse;
       margin-top: 20px;
+      table-layout: fixed;
     }
     th, td {
       padding: 12px;
       border: 1px solid #ddd;
       text-align: center;
+    }
+    th:nth-child(1), td:nth-child(1) {
+      width: 40%;
+    }
+    th:nth-child(2), td:nth-child(2) {
+      width: 25%;
+    }
+    th:nth-child(3), td:nth-child(3) {
+      width: 35%;
     }
     th {
       background: #efebe9;
