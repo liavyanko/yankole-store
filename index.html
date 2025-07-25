@@ -52,6 +52,9 @@
       font-size: 16px;
       box-sizing: border-box;
     }
+    input[type="number"] {
+      min-width: 70px;
+    }
     input:invalid {
       border-color: red;
     }
@@ -90,8 +93,10 @@
       background: #388e3c;
     }
     #total-container {
-      position: sticky;
+      position: fixed;
       bottom: 0;
+      left: 0;
+      right: 0;
       background: #fff;
       padding: 10px;
       border-top: 2px solid #ccc;
@@ -111,6 +116,9 @@
     #promo-container {
       display: none;
       margin-top: 20px;
+    }
+    main {
+      margin-bottom: 80px;
     }
   </style>
 </head>
@@ -155,13 +163,13 @@
     <label for="notes">הערות</label>
     <textarea id="notes" rows="3"></textarea>
 
-    <div id="total-container">
-      <div id="total">סה"כ: 0 ₪</div>
-      <div id="shipping-note"></div>
-    </div>
-
     <button class="button" onclick="sendToWhatsApp()">שלח הזמנה בוואטסאפ</button>
   </main>
+
+  <div id="total-container">
+    <div id="total">סה"כ: 0 ₪</div>
+    <div id="shipping-note"></div>
+  </div>
 
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
@@ -225,11 +233,11 @@
 
       const region = document.getElementById('region').value;
       let shipping = 0;
-      if (['שרון', 'מרכז'].includes(region)) shipping = 10;
-      else if (region === 'תל אביב') shipping = 20;
-      else if (region === 'חיפה') shipping = 30;
-      else if (region === 'צפון') shipping = 35;
-      else if (region === 'אחר') document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
+      if (["שרון", "מרכז"].includes(region)) shipping = 10;
+      else if (region === "תל אביב") shipping = 20;
+      else if (region === "חיפה") shipping = 30;
+      else if (region === "צפון") shipping = 35;
+      else if (region === "אחר") document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
       else document.getElementById('shipping-note').textContent = '';
 
       document.getElementById('total').textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
