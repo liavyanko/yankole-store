@@ -1,0 +1,1222 @@
+[
+  {
+    "name":"קמח שקדים ספרדי לבן טחון דק במקום 56 - מבצע!! ",
+    "price":50.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שקד טבעי ישראלי",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"אגוז מלך טבעי חצאים",
+    "price":55.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פקאן טבעי חצאים",
+    "price":85.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קשיו טבעי שלם ענק",
+    "price":58.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פיסטוק בקליפה טבעי",
+    "price":74.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פיסטוק קלוף טבעי שלם",
+    "price":140.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שקד מולבן טבעי - גפרור \/ פרוס",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"ברזיל טבעי ענק ",
+    "price":140.0,
+    "is_weighted":true
+  },
+  {
+    "name":"לוז טבעי  (חום)",
+    "price":75.0,
+    "is_weighted":true
+  },
+  {
+    "name":"לוז טבעי מולבן",
+    "price":90.0,
+    "is_weighted":true
+  },
+  {
+    "name":"מקדמיה טבעי ענק ",
+    "price":150.0,
+    "is_weighted":true
+  },
+  {
+    "name":"צנובר טבעי  ",
+    "price":145.0,
+    "is_weighted":true
+  },
+  {
+    "name":"בוטן טבעי (ללא קליפה חיצונית)",
+    "price":32.0,
+    "is_weighted":true
+  },
+  {
+    "name":"בוטן טבעי מולבן חצאים",
+    "price":32.0,
+    "is_weighted":true
+  },
+  {
+    "name":"ערמונים אורגניים קלופים וקלויים בואקום 100 ג' ",
+    "price":6.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גרעין דלעת קלוף גדול",
+    "price":44.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גרעין חמנייה קלוף ענק",
+    "price":24.0,
+    "is_weighted":true
+  },
+  {
+    "name":"ציה שחורה אורגני טבעי",
+    "price":44.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פשתן אורגני טבעי",
+    "price":18.0,
+    "is_weighted":true
+  },
+  {
+    "name":"דוחן ",
+    "price":26.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קוקוס טחון",
+    "price":40.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שומשום לבן",
+    "price":32.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שומשום מלא",
+    "price":32.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שומשום שחור",
+    "price":38.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שיבולת שועל טבעי דקה \/עבה",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קמח קוקוס",
+    "price":32.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גרעין שחור קלוי במלח (ללא גלוטן)",
+    "price":38.0,
+    "is_weighted":true
+  },
+  {
+    "name":"בוטן קלוי עם מלח (ללא גלוטן)",
+    "price":48.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גרעין אבטיח קלוי במלח",
+    "price":72.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גרעין דלעת קלוי במלח",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פיסטוק קלוי עם מלח (ללא גלוטן)",
+    "price":89.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שקד קלוי עם מלח (ללא גלוטן)",
+    "price":89.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קשיו קלוי עם מלח (ללא גלוטן)",
+    "price":89.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קשיו קלוי בטאבון (ללא גלוטן)",
+    "price":90.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פקאן קלוי חצאים עם מלח (ללא גלוטן)",
+    "price":125.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פקאן סיני מתוק (ללא גלוטן)",
+    "price":100.0,
+    "is_weighted":true
+  },
+  {
+    "name":"לוז קלוי עם מלח  (ללא גלוטן)",
+    "price":80.0,
+    "is_weighted":true
+  },
+  {
+    "name":"בוטן אמריקאי \/קבוקים",
+    "price":42.0,
+    "is_weighted":true
+  },
+  {
+    "name":"תירס קלוי",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חמוציות חצי ללא סוכר (רכז תפוחים)",
+    "price":46.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חמוציות שלמות אורגניות",
+    "price":84.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פלחי קוקוס טבעי",
+    "price":80.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פלחי קוקוס קלוי מתקתק",
+    "price":80.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גינג'ר טבעי דל סוכר",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"צימוק בהיר קטן",
+    "price":40.0,
+    "is_weighted":true
+  },
+  {
+    "name":"צימוק בהיר ענק",
+    "price":50.0,
+    "is_weighted":true
+  },
+  {
+    "name":"צימוק שחור אורגני ללא סוכר  (אוזבקי)",
+    "price":64.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שזיף מגולען אורגני",
+    "price":64.0,
+    "is_weighted":true
+  },
+  {
+    "name":"משמש אורגני טבעי ללא סוכר",
+    "price":68.0,
+    "is_weighted":true
+  },
+  {
+    "name":"משמש אוזבקי טבעי ללא סוכר",
+    "price":58.0,
+    "is_weighted":true
+  },
+  {
+    "name":"תאנים אורגני ",
+    "price":70.0,
+    "is_weighted":true
+  },
+  {
+    "name":"תאנים על חוט אורגני (ייבוש טבעי)",
+    "price":76.0,
+    "is_weighted":true
+  },
+  {
+    "name":"תמר מג'הול סופר ג'מבו אורגני",
+    "price":48.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גולדן ברי טבעי",
+    "price":110.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גוג'י ברי אורגני ",
+    "price":74.0,
+    "is_weighted":true
+  },
+  {
+    "name":"מנגו אורגני טבעי ללא סוכר",
+    "price":100.0,
+    "is_weighted":true
+  },
+  {
+    "name":"בננה ציפס אורגני ",
+    "price":42.0,
+    "is_weighted":true
+  },
+  {
+    "name":"אננס טבעי ללא סוכר",
+    "price":92.0,
+    "is_weighted":true
+  },
+  {
+    "name":"אוכמנייה כחולה בלו ברי אורגני",
+    "price":110.0,
+    "is_weighted":true
+  },
+  {
+    "name":"דובדבן חמוץ אורגני ",
+    "price":110.0,
+    "is_weighted":true
+  },
+  {
+    "name":"תפוח עץ טבעי ",
+    "price":50.0,
+    "is_weighted":true
+  },
+  {
+    "name":"אפונה ירוקה  ",
+    "price":16.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פולי סויה  ",
+    "price":16.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שעועית מש ירוק",
+    "price":16.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שעועית לימה (בובס)",
+    "price":25.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שעועית לבנה",
+    "price":20.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שעועית אדומה \/שחורה",
+    "price":20.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שעועית אזוקי",
+    "price":20.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חומוס הדס",
+    "price":18.0,
+    "is_weighted":true
+  },
+  {
+    "name":"כוסמת ירוקה",
+    "price":18.0,
+    "is_weighted":true
+  },
+  {
+    "name":"עדשים אדומות \/ירוקות",
+    "price":16.0,
+    "is_weighted":true
+  },
+  {
+    "name":"עדשים שחורות",
+    "price":28.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קינואה לבנה",
+    "price":30.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קינואה אדומה",
+    "price":36.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חמאת שקדים קלופים 700 ג' שקד תבור (גדול)",
+    "price":52.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חמאת בוטנים 1 ק\"ג שקד תבור (גדול)",
+    "price":30.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חמאת אגוזי לוז שקד תבור 200 ג'",
+    "price":32.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חמאת פיסטוק שקד תבור 200 ג'",
+    "price":42.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח כוסמין לבן \/מלא\/ 70% מלא קילו",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח טפיוקה",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח חומוס  לל\"ג 500  ג",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח עדשים אדומות לל\"ג 500 ג",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח כוסמת ירוקה לל\"ג 500 ג",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח אורז מלא לל\"ג 500 ג ",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח תירס לל\"ג 500 ג",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח טף לבן לל\"ג 500 ג",
+    "price":25.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח רב תכליתי ללא גלוטן 500",
+    "price":30.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שוקולד מריר 85% קקאו \"לובקה\" פרווה (עלול להכיל חלב עקב פס יצור)",
+    "price":150.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שוקולד מריר 70% קקאו \"לובקה\/קאליבו\" פרווה",
+    "price":96.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שוקולד מריר 55% קקאו \"לובקה\/קאליבו\" פרווה",
+    "price":78.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שוקולד          חלב\/לבן \"לובקה\/קאליבו\" (חלבי)",
+    "price":78.0,
+    "is_weighted":true
+  },
+  {
+    "name":"עיסת קקאו 100% קקאו במשקל\/שקית",
+    "price":190.0,
+    "is_weighted":true
+  },
+  {
+    "name":"אבקת קקאו אמיתי 400 ג",
+    "price":45.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אבקת קקאו אמיתי 1 ק\"ג  ",
+    "price":109.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מקל וניל מדגסקר בורבון",
+    "price":14.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מחית וניל 180 מ\"ל מר קייק",
+    "price":90.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מחית וניל מילוי לפי משקל - מר קייק החל מ-64 ש\"ל ל 100 מ\"ל, 80 ל 150 מ\"ל (200 מ\"ל 110 ₪ 500 מ\"ל 275 ₪)",
+    "price":64.0,
+    "is_weighted":false
+  },
+  {
+    "name":"תמצית וניל אמיתית",
+    "price":70.0,
+    "is_weighted":false
+  },
+  {
+    "name":"תמצית שקדים 30 מ\"ל ",
+    "price":15.0,
+    "is_weighted":false
+  },
+  {
+    "name":"תמצית בטעם רום \/מי זהר\/ שקדים \/ורדים",
+    "price":15.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מי ורדים 500 מל ",
+    "price":24.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רוזטה - תרכיז להכנת משקה שקדים - משקד 750 מל ",
+    "price":28.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סירופ למלבי - משקד 750 מל ",
+    "price":28.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מחית תמרים טבעית 100%-  500 ג' ",
+    "price":15.0,
+    "is_weighted":false
+  },
+  {
+    "name":"ריבת חלב 500 גרם ",
+    "price":22.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אבקת סוכר ארוז 1 ק\"ג ללא גלוטן",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סוכר וניל 1 ק\"ג ",
+    "price":22.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אבקת אפיה - 1 ק\"ג ",
+    "price":22.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אבקת אפיה (ללא אלומיניום) שקית",
+    "price":22.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סודה לשתיה (ללא אלומיניום) 1 ק\"ג ",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מלח לימון 1 ק\"ג",
+    "price":20.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קורנפלור (עמילן תירס) 1 ק\"ג ללא גלוטן",
+    "price":15.0,
+    "is_weighted":false
+  },
+  {
+    "name":"דובדבן אמרנה איטלקי ",
+    "price":38.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רסק תפוחים אורגני ללא סוכר ",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שמן זית 5 ליטר \"אחיה\"",
+    "price":279.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שמן זית 2 ליטר \"אחיה\"",
+    "price":119.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שמן זית 750 מל אחיה ",
+    "price":47.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שמן קוקוס אורגני לא מזוכך ליטר",
+    "price":43.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שמן זרעי ענבים",
+    "price":45.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שמן שומשום  ",
+    "price":30.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אריטריתול אבקה במשקל (באיכות אירופאית) קיטו",
+    "price":35.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מייפל 0 פחמימה \/קלוריות קיטו",
+    "price":35.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מייפל אורגני טהור 946-1000 מ\"ל",
+    "price":85.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מייפל אורגני טהור 236-250 מ\"ל ",
+    "price":22.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אגבה כחולה אורגני קטן",
+    "price":24.0,
+    "is_weighted":false
+  },
+  {
+    "name":"דבש (בקבוק לחיץ) 400 גרם פרחי בר ",
+    "price":25.0,
+    "is_weighted":false
+  },
+  {
+    "name":"דבש אורגני פרחי בר 500 גרם",
+    "price":40.0,
+    "is_weighted":false
+  },
+  {
+    "name":"דבש לא מחומם 1 ק\"ג פרימיום מכוורת סוגים שונים: פרחי אבוקדו \/אקליפטוס\/בר\/שיזף\/הדרים (בהתאם למלאי קיים)",
+    "price":55.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סילאן טבעי (ללא סוכר) 300 ג' ",
+    "price":14.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סילאן טבעי (ללא סוכר) צנצנת 900 ג'",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סוכר חום דמררה 1 ק\"ג ",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סוכר קנים אורגני 1 ק\"ג",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סוכר קוקוס אורגני 350 ג'",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"תחליף סוכר לבן \"סוויטאנגו\" 280 ג'",
+    "price":30.0,
+    "is_weighted":false
+  },
+  {
+    "name":"תחליף סוכר לבן \"סוויטאנגו\" 700 ג'",
+    "price":62.0,
+    "is_weighted":false
+  },
+  {
+    "name":"תחליף סוכר חום \"סוויטאנגו\"",
+    "price":40.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סוויטנאגו - אבקה להכנת משקה שוקו 400 ג",
+    "price":40.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סוויטאנגו - אינסטנט פודינג וניל \/שוקולד\/קרמל- 50 ג'",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סוויטאנגו - אינסטנט פודינג וניל\/שוקולד אריזת  400 ג'",
+    "price":50.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סויטאנגו - סוכר וניל 100 ג'",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סויטאנגו - אבקת סוכר 100 ג'",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סויטאנגו - אבקת סוכר - אריזת חסכון 400 ג'",
+    "price":40.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סויטאנגו  - 2 גו - 100 שקיות קטנות לדרך",
+    "price":40.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סוויטנגו - ממרח שוקולד לוז \/חלבה פיסטוק",
+    "price":38.0,
+    "is_weighted":false
+  },
+  {
+    "name":"טחינה \"הר ברכה\" 1 ק\"ג",
+    "price":35.0,
+    "is_weighted":false
+  },
+  {
+    "name":"טחינה \"הר ברכה\" חצי ק\"ג",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"טחינה היונה 900 ג'",
+    "price":35.0,
+    "is_weighted":false
+  },
+  {
+    "name":"טחינה \" אל ארז \" 1 קילו ",
+    "price":35.0,
+    "is_weighted":false
+  },
+  {
+    "name":"טחינה \" אל ארז 500 גרם ",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מלח הימלאיה דק \/גס  1 ק\"ג ",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מלח הימלאיה עבה במיוחד 1 ק\"ג",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מלח אטלנטי  1 ק\"ג ",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אורז בסמטי \/יסמין ארוך \/עגול אורגני ",
+    "price":15.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אורז פרא אורגני ",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שק אורז 5 ק\"ג",
+    "price":60.0,
+    "is_weighted":false
+  },
+  {
+    "name":"דפי אורז  ",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חבילת חטיף אצות מיובשות 4.5 גרם (9 באריזה)",
+    "price":32.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חבילת אצות נורי לסושי ",
+    "price":13.0,
+    "is_weighted":false
+  },
+  {
+    "name":"ממרח קארי ירוק \/צהוב\/אדום  400 גרם",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רוטב פאד טאי (גלוטן)",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רוטב דגים (ללא גלוטן)",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רוטב בוטנים (ללא גלוטן) ",
+    "price":19.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חומץ אורז",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חומץ מירין לתיבול",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רוטב שזיפים חמוץ מתוק (ללא גלוטן)",
+    "price":20.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רוטב טריאקי  קטן",
+    "price":17.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רוטב טריאקי גדול",
+    "price":20.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סויה מופחת נתרן 500 מ\"ל ",
+    "price":20.0,
+    "is_weighted":false
+  },
+  {
+    "name":"סויה ללא גלוטן",
+    "price":25.0,
+    "is_weighted":false
+  },
+  {
+    "name":"ג'נגר כבוש לבן 160 גרם \"מזרח מערב\"",
+    "price":13.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח טמפורה 500 גרם ",
+    "price":16.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קמח אורז 400 גרם",
+    "price":13.0,
+    "is_weighted":false
+  },
+  {
+    "name":"פירורי פנקו יפניים 200 גרם ",
+    "price":13.0,
+    "is_weighted":false
+  },
+  {
+    "name":"פניני טפיוקה 500 ג' ",
+    "price":13.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חלב \/קרם קוקוס אורגני 400\/500 מ\"ל בפחית \/קרטון",
+    "price":15.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חלב\/ קרם קוקוס 1 ליטר ארוי די",
+    "price":28.0,
+    "is_weighted":false
+  },
+  {
+    "name":"אריטריתול אבקה במשקל (באיכות אירופאית) קיטו",
+    "price":35.0,
+    "is_weighted":false
+  },
+  {
+    "name":"מייפל 0 פחמימה \/קלוריות קיטו",
+    "price":35.0,
+    "is_weighted":false
+  },
+  {
+    "name":"פסיליום  (מייצב בצקים)",
+    "price":50.0,
+    "is_weighted":false
+  },
+  {
+    "name":"שמרי בירה \/פתיתי בירה ",
+    "price":29.0,
+    "is_weighted":false
+  },
+  {
+    "name":"ג'לטין דגים אמיתי 1 ק\"ג ",
+    "price":215.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חומץ תפוחים אורגני, לא מסונן",
+    "price":30.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חומץ בלסמי ",
+    "price":30.0,
+    "is_weighted":false
+  },
+  {
+    "name":"קסנטאן גם במשקל (משפר לישה ומרקם) - המחיר ל300 ג -ניתן פחות",
+    "price":38.0,
+    "is_weighted":false
+  },
+  {
+    "name":"ארטישוק חצאים \/שלמים מתובל בשמן צנצנת",
+    "price":35.0,
+    "is_weighted":false
+  },
+  {
+    "name":"חרדל רגיל \/גרגירים אורגני 200 ג'  ",
+    "price":18.0,
+    "is_weighted":false
+  },
+  {
+    "name":"רכז רימונים טבעי ",
+    "price":33.0,
+    "is_weighted":false
+  },
+  {
+    "name":"פלפל שחור שלם \/גרוס\/טחון ",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פלפל לבן  ",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פלפל אנגלי שלם \/טחון ",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פפריקה מעושנת ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פפריקה מתוקה רגילה \/עם שמן \/גרוסה  ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פפריקה חריפה רגילה  ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"צילי מקסיקני  ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קינמון טחון   \/מקלות ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קימל שלם \/טחון ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"סומק טחון ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קצח ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"זנגביל (גינגר) ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חרדל צהוב טחון ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שומר שלם \/טחון ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חילבה שלם \/טחון ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שום טחון \/גבישי \/פלחים ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"ציפורן שלם \/טחון ",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"זעתר עם שומשום טחון ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"אורגנו \/טימין \/רוזמרין \/בזיליקום \/כוסברה \/פטרוזיליה",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"זרעי כוסברה שלמים ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"אניס ינסון שלם ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"כמון שלם \/טחון ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"כורכום טחון ",
+    "price":12.0,
+    "is_weighted":true
+  },
+  {
+    "name":"אגוז מוסקט שלם \/טחון ",
+    "price":20.0,
+    "is_weighted":true
+  },
+  {
+    "name":"הל שלם \/טחון ",
+    "price":25.0,
+    "is_weighted":true
+  },
+  {
+    "name":"תבלין על האש וסטייק \/שווארמה \/גריל עוף",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"תבלין קציצות מעורב ירושלמי \/טוסקנה \/קייגון \/פילדלפיה ",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חוויג למרק \/חוויג' לקפה",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קארי מסאלה",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"בהרט \/ראס אל חנות \/מסאלה \/פיצה \/ברביקיו",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"תבלין דג עם רוזמרין \/דג צלוי",
+    "price":14.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פפריקה מתוקה רגילה \/מרוקאית 1 ק\"ג",
+    "price":50.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פרג שלם \/טחון 1 ק\"ג",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קינמון מקלות בתפזורת קצר \/ארוך 1 ק\"ג",
+    "price":70.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קינמון טחון  1 ק\"ג",
+    "price":50.0,
+    "is_weighted":true
+  },
+  {
+    "name":"כמון שלם  1 ק\"ג",
+    "price":65.0,
+    "is_weighted":true
+  },
+  {
+    "name":"כמון טחון  1 ק\"ג",
+    "price":65.0,
+    "is_weighted":true
+  },
+  {
+    "name":"כורכום טחון 1 ק\"ג",
+    "price":50.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פלפל שחור שלם \/טחון\/גרוס  1 ק\"ג",
+    "price":85.0,
+    "is_weighted":true
+  },
+  {
+    "name":"ברבקיו  1 ק\"ג",
+    "price":59.0,
+    "is_weighted":true
+  },
+  {
+    "name":"זגנגביל טחון (גינגר טחון)  1 ק\"ג",
+    "price":99.0,
+    "is_weighted":true
+  },
+  {
+    "name":"גריל עוף \/על האש \/שווארמה  1 ק\"ג",
+    "price":55.0,
+    "is_weighted":true
+  },
+  {
+    "name":"צילי מקסיקני גרוס  1 ק\"ג",
+    "price":55.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שום גבישי  1 ק\"ג",
+    "price":55.0,
+    "is_weighted":true
+  },
+  {
+    "name":"זעתר \/אורגנו  1 ק\"ג",
+    "price":55.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חוויג למרק  1 ק\"ג",
+    "price":55.0,
+    "is_weighted":true
+  },
+  {
+    "name":"פלפל אדום שלם  1 ק\"ג",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שבבי בצל \/שבבי שום  1 ק\"ג",
+    "price":55.0,
+    "is_weighted":true
+  },
+  {
+    "name":"עלי דפנה  1 ק\"ג",
+    "price":75.0,
+    "is_weighted":true
+  },
+  {
+    "name":"קצח \/קימל  1 ק\"ג",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"ראס אל חנות \/בהרט \/קארי מסאלה \/גארם מסאלה  1 ק\"ג",
+    "price":55.0,
+    "is_weighted":true
+  },
+  {
+    "name":"שומר שלם \/זרעי כוסברה שלמים  1 ק\"ג",
+    "price":60.0,
+    "is_weighted":true
+  },
+  {
+    "name":"חילבה   1 ק\"ג",
+    "price":35.0,
+    "is_weighted":true
+  },
+  {
+    "name":"ציפורן שלם  1 ק\"ג",
+    "price":135.0,
+    "is_weighted":true
+  },
+  {
+    "name":"הל טחון  1 ק\"ג",
+    "price":270.0,
+    "is_weighted":true
+  },
+  {
+    "name":"הל שלם  1 ק\"ג",
+    "price":290.0,
+    "is_weighted":true
+  }
+]
