@@ -234,18 +234,42 @@
         buildTable();
       });
 
-    function createQuantityControl(product, index) {
+        function createQuantityControl(product, index) {
       const wrapper = document.createElement('div');
       wrapper.className = 'quantity-controls';
+      wrapper.style.display = 'flex';
+      wrapper.style.alignItems = 'center';
+      wrapper.style.justifyContent = 'center';
+      wrapper.style.gap = '8px';
+      wrapper.style.flexDirection = 'row-reverse';
     
       const buttonColumn = document.createElement('div');
       buttonColumn.className = 'button-column';
+      buttonColumn.style.display = 'flex';
+      buttonColumn.style.flexDirection = 'column';
+      buttonColumn.style.gap = '4px';
     
       const plus = document.createElement('button');
       plus.textContent = '+';
+      plus.style.width = '36px';
+      plus.style.height = '36px';
+      plus.style.fontSize = '16px';
+      plus.style.fontWeight = 'bold';
+      plus.style.border = '1px solid #ccc';
+      plus.style.borderRadius = '4px';
+      plus.style.background = '#eee';
+      plus.style.cursor = 'pointer';
     
       const minus = document.createElement('button');
       minus.textContent = '-';
+      minus.style.width = '36px';
+      minus.style.height = '36px';
+      minus.style.fontSize = '16px';
+      minus.style.fontWeight = 'bold';
+      minus.style.border = '1px solid #ccc';
+      minus.style.borderRadius = '4px';
+      minus.style.background = '#eee';
+      minus.style.cursor = 'pointer';
     
       const input = document.createElement('input');
       input.type = 'number';
@@ -253,6 +277,13 @@
       input.step = product.is_weighted ? 0.1 : 1;
       input.value = '';
       input.id = `quantity-${index}`;
+      input.style.width = '70px';
+      input.style.height = '40px';
+      input.style.textAlign = 'center';
+      input.style.fontSize = '16px';
+      input.style.boxSizing = 'border-box';
+      input.style.borderRadius = '8px';
+      input.style.border = '1px solid #ccc';
     
       minus.onclick = () => {
         let val = parseFloat(input.value);
