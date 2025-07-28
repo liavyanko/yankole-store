@@ -94,12 +94,12 @@
       font-size: 16px;
     }
     input[type="number"] {
-      min-width: 70px;
-      max-width: 80px;
-      width: 100%;
+      width: 70px;
+      max-width: 100%;
       text-align: center;
       font-size: 16px;
     }
+
     input:invalid {
       border-color: red;
     }
@@ -334,32 +334,46 @@
     }
 
     function updateTotal() {
-      let total = 0;
-      products.forEach((product, index) => {
-        const qtyInput = document.getElementById(`quantity-${index}`);
-        const qty = parseFloat(qtyInput.value);
-        if (!isNaN(qty)) {
-          total += qty * product.price;
-          qtyInput.classList.remove('error');
-        } else {
-          qtyInput.classList.remove('error');
-        }
-      });
+  let total = 0;
+  products.forEach((product, index) => {
+    const qtyInput = document.getElementById(`quantity-${index}`);
+    const qty = parseFloat(qtyInput.value);
+    if (!isNaN(qty)) {
+      total += qty * product.price;
+      qtyInput.classList.remove('error');
+    } else {
+      qtyInput.classList.remove('error');
+    }
+  });
 
-      const region = document.getElementById('region').value;
-      let shipping = 0;
-      if (['שרון', 'מרכז'].includes(region)) shipping = 10;
-      else if (region === 'תל אביב') shipping = 20;
-      else if (region === 'חיפה') shipping = 30;
-      else if (region === 'צפון') shipping = 35;
-      else if (region === 'אחר') document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
-      else document.getElementById('shipping-note').textContent = '';
-      const promoSelect = document.getElementById('promo');
-      const promoValue = parseFloat(promoSelect?.value || '0');
-      if (!isNaN(promoValue)) {
-        total += promoValue;
-      }
-      document.getElementById('total').textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
+  const region = document.getElementById('region').value;
+  let shipping = 0;
+  if (['שרון', 'מרכז'].includes(region)) shipping = 10;
+  else if (region === 'תל אביב') shipping = 20;
+  else if (region === 'חיפה') shipping = 30;
+  else if (region === 'צפון') shipping = 35;
+  else if (region === 'אחר')
+    document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
+  else
+    document.getElementById('shipping-note').textContent = '';
+
+  const promoContainer = document.getElementById('promo-container');
+  if (total >= 300) {
+    promoContainer.style.display = 'block';
+  } else {
+    promoContainer.style.display = 'none';
+    document.getElementById('promo').value = '';
+  }
+
+  // ✅ הוספת ההטבה לאחר בדיקת הסף
+  const promoSelect = document.getElementById('promo');
+  const promoValue = parseFloat(promoSelect?.value || '0');
+  if (!isNaN(promoValue)) {
+    total += promoValue;
+  }
+
+  document.getElementById('total').textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
+}
 
       const promoContainer = document.getElementById('promo-container');
       if (total >= 300) {
