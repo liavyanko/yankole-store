@@ -237,23 +237,23 @@
     function createQuantityControl(product, index) {
       const wrapper = document.createElement('div');
       wrapper.className = 'quantity-controls';
-
+    
+      const buttonColumn = document.createElement('div');
+      buttonColumn.className = 'button-column';
+    
       const plus = document.createElement('button');
       plus.textContent = '+';
-
-      const row = document.createElement('div');
-      row.className = 'button-row';
-
+    
+      const minus = document.createElement('button');
+      minus.textContent = '-';
+    
       const input = document.createElement('input');
       input.type = 'number';
       input.min = product.is_weighted ? 0.5 : 1;
       input.step = product.is_weighted ? 0.1 : 1;
       input.value = '';
       input.id = `quantity-${index}`;
-
-      const minus = document.createElement('button');
-      minus.textContent = '-';
-
+    
       minus.onclick = () => {
         let val = parseFloat(input.value);
         const step = parseFloat(input.step);
@@ -267,7 +267,7 @@
         }
         input.dispatchEvent(new Event('input'));
       };
-
+    
       plus.onclick = () => {
         let val = parseFloat(input.value);
         const min = parseFloat(input.min);
@@ -280,16 +280,18 @@
         input.value = val.toFixed(2);
         input.dispatchEvent(new Event('input'));
       };
-
+    
       input.addEventListener('input', updateTotal);
-
-      wrapper.appendChild(plus);
-      wrapper.appendChild(row);
-      row.appendChild(minus);
-      row.appendChild(input);
-
+    
+      buttonColumn.appendChild(plus);
+      buttonColumn.appendChild(minus);
+    
+      wrapper.appendChild(buttonColumn);
+      wrapper.appendChild(input);
+    
       return wrapper;
     }
+
 
     function buildTable() {
       const container = document.getElementById('product-table');
