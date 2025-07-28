@@ -68,6 +68,12 @@
       align-items: center;
       gap: 6px;
     }
+    
+    @media (min-width: 768px) {
+      .quantity-controls {
+        flex-direction: row;
+      }
+    }
     .quantity-controls .button-row {
       display: flex;
       gap: 6px;
@@ -348,7 +354,11 @@
       else if (region === 'צפון') shipping = 35;
       else if (region === 'אחר') document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
       else document.getElementById('shipping-note').textContent = '';
-
+      const promoSelect = document.getElementById('promo');
+      const promoValue = parseFloat(promoSelect?.value || '0');
+      if (!isNaN(promoValue)) {
+        total += promoValue;
+      }
       document.getElementById('total').textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
 
       const promoContainer = document.getElementById('promo-container');
