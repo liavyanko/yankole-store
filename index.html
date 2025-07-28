@@ -1,3 +1,174 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ינקול'ה - הזמנות</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Rubik', sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+    header {
+      text-align: center;
+      background: #ffffff;
+      padding: 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    header img {
+      max-width: 180px;
+      height: auto;
+    }
+    main {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px 20px;
+      background: #fff;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      border-radius: 10px;
+      margin-top: 30px;
+      margin-bottom: 120px;
+    }
+    h1 {
+      text-align: center;
+      color: #3e2723;
+      margin-bottom: 10px;
+    }
+    .description {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      background-color: #fff8e1;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ffe082;
+    }
+    label {
+      font-weight: 600;
+      margin-top: 15px;
+      display: block;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      box-sizing: border-box;
+    }
+    .quantity-controls {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .quantity-controls .button-row {
+      display: flex;
+      gap: 6px;
+    }
+    .quantity-controls button {
+      padding: 4px 10px;
+      font-size: 16px;
+      font-weight: bold;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #eee;
+      cursor: pointer;
+      width: 36px;
+    }
+    .quantity-controls input[type="number"] {
+      width: 70px;
+      text-align: center;
+      font-size: 16px;
+    }
+    input[type="number"] {
+      min-width: 70px;
+      max-width: 80px;
+      width: 100%;
+      text-align: center;
+      font-size: 16px;
+    }
+    input:invalid {
+      border-color: red;
+    }
+    .error {
+      border-color: red;
+      background-color: #ffe6e6;
+    }
+    textarea {
+      resize: vertical;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      table-layout: fixed;
+    }
+    th, td {
+      padding: 12px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th:nth-child(1), td:nth-child(1) {
+      width: 48%;
+    }
+    th:nth-child(2), td:nth-child(2) {
+      width: 22%;
+    }
+    th:nth-child(3), td:nth-child(3) {
+      width: 30%;
+    }
+    th {
+      background: #efebe9;
+      color: #4e342e;
+    }
+    .button {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 14px 24px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+    .button:hover {
+      background: #388e3c;
+    }
+    #total-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      padding: 10px;
+      border-top: 2px solid #ccc;
+      text-align: center;
+      z-index: 100;
+    }
+    #total {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    #shipping-note {
+      margin-top: 10px;
+      color: red;
+      font-weight: bold;
+      text-align: center;
+    }
+    #promo-container {
+      display: none;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
   <header>
     <img src="logo.png" alt="לוגו ינקול'ה" />
   </header>
@@ -11,12 +182,11 @@
       לאחר שתסיימו, לחצו על הכפתור בתחתית הדף וההזמנה תישלח אלינו ישירות בוואטסאפ.<br>
       אם תגיעו ל-300 ₪ ומעלה תיפתח לכם האפשרות לבחור הטבה שווה במתנה!
     </div>
-
     <label for="fullname">שם מלא</label>
     <input type="text" id="fullname" required />
 
     <label for="phone">מספר טלפון</label>
-    <input type="tel" id="phone" required pattern="^(\+9725\d{8}|05\d{8})$" title="נא להזין מספר טלפון חוקי" />
+    <input type="tel" id="phone" required pattern="^(\+9725\d{8}|05\d{8})$" title="נא להזין מספר טלפון חוקי בפורמט 0501234567 או +972501234567" />
 
     <label for="address">כתובת מלאה</label>
     <input type="text" id="address" required />
@@ -37,7 +207,7 @@
 
     <div id="promo-container">
       <label for="promo">בחר הטבה</label>
-      <select id="promo" onchange="updateTotal()">
+      <select id="promo">
         <option value="">על מנת לקבל הטבה יש להרכיב סל ב-300 ש"ח לפחות</option>
         <option value="10">סילאן טבעי לחיץ ב10₪ במקום 14₪</option>
         <option value="16">צ׳יה שחורה חצי ק״ג ב16₪ במקום 22₪</option>
@@ -70,8 +240,11 @@
       const wrapper = document.createElement('div');
       wrapper.className = 'quantity-controls';
 
-      const minus = document.createElement('button');
-      minus.textContent = '-';
+      const plus = document.createElement('button');
+      plus.textContent = '+';
+
+      const row = document.createElement('div');
+      row.className = 'quantity-controls-row';
 
       const input = document.createElement('input');
       input.type = 'number';
@@ -80,8 +253,8 @@
       input.value = '';
       input.id = `quantity-${index}`;
 
-      const plus = document.createElement('button');
-      plus.textContent = '+';
+      const minus = document.createElement('button');
+      minus.textContent = '-';
 
       minus.onclick = () => {
         let val = parseFloat(input.value);
@@ -112,9 +285,11 @@
 
       input.addEventListener('input', updateTotal);
 
-      wrapper.appendChild(minus);
-      wrapper.appendChild(input);
       wrapper.appendChild(plus);
+      row.appendChild(input);
+      row.appendChild(minus);
+      wrapper.appendChild(row);
+
       return wrapper;
     }
 
@@ -174,12 +349,6 @@
       else if (region === 'אחר') document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
       else document.getElementById('shipping-note').textContent = '';
 
-      const promoSelect = document.getElementById('promo');
-      const promoValue = parseFloat(promoSelect?.value || '0');
-      if (!isNaN(promoValue)) {
-        total += promoValue;
-      }
-
       document.getElementById('total').textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
 
       const promoContainer = document.getElementById('promo-container');
@@ -189,10 +358,6 @@
         promoContainer.style.display = 'none';
         document.getElementById('promo').value = '';
       }
-    }
-
-    function sendToWhatsApp() {
-      // פונקציה קיימת או מותאמת לפי הצורך
     }
   </script>
 </body>
