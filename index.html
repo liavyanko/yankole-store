@@ -64,12 +64,16 @@
     }
     .quantity-controls {
       display: flex;
-      flex-direction: column;
+      flex-direction: row-reverse;
       align-items: center;
-      justify-content: center;
+      gap: 8px;
+    }
+    .button-column {
+      display: flex;
+      flex-direction: column;
       gap: 4px;
     }
-    .quantity-controls button {
+    .button-column button {
       padding: 4px 10px;
       font-size: 16px;
       font-weight: bold;
@@ -82,11 +86,10 @@
       line-height: 1;
     }
     .quantity-controls input[type="number"] {
-      width: 90px;
+      width: 70px;
+      height: 40px;
       text-align: center;
       font-size: 16px;
-      height: 40px;
-      box-sizing: border-box;
     }
     input:invalid {
       border-color: red;
