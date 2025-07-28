@@ -329,16 +329,16 @@
       const region = document.getElementById('region');
       const notes = document.getElementById('notes');
     
-      let hasError = false;
-    
       const scrollToAndAlert = (element, message) => {
         element.scrollIntoView({ behavior: 'smooth', block: 'center' });
         alert(message);
         element.focus();
       };
     
+      const phonePattern = /^(\+9725\d{8}|05\d{8})$/;
+    
       if (!name.value.trim()) return scrollToAndAlert(name, 'נא למלא את השם המלא');
-      if (!phone.value.trim() || phone.classList.contains('error')) return scrollToAndAlert(phone, 'נא להזין מספר טלפון חוקי');
+      if (!phone.value.trim() || !phonePattern.test(phone.value)) return scrollToAndAlert(phone, 'נא להזין מספר טלפון חוקי');
       if (!address.value.trim()) return scrollToAndAlert(address, 'נא להזין כתובת מלאה');
       if (!region.value) return scrollToAndAlert(region, 'נא לבחור אזור מגורים');
     
