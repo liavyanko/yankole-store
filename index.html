@@ -437,7 +437,7 @@
       else if (region === "אחר") document.getElementById("shipping-note").textContent = "למשלוח יש ליצור קשר ב-0509369944";
       else document.getElementById("shipping-note").textContent = "";
 
-      document.getElementById("total").textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
+      document.getElementById("total").textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ כולל משלוח)`;
 
       const promoContainer = document.getElementById("promo-container");
       if (total >= 300) {
