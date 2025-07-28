@@ -68,10 +68,8 @@
       align-items: center;
       gap: 6px;
     }
-    .button-row {
+    .quantity-controls .button-row {
       display: flex;
-      align-items: center;
-      justify-content: center;
       gap: 6px;
     }
     .quantity-controls button {
@@ -87,10 +85,10 @@
       line-height: 1;
     }
     .quantity-controls input[type="number"] {
-      width: 70px;
+      width: 90px;
       text-align: center;
       font-size: 16px;
-      height: 36px;
+      height: 40px;
       box-sizing: border-box;
     }
     input:invalid {
@@ -177,8 +175,9 @@
       <strong>ברוכים הבאים לחנות של ינקול'ה!</strong><br>
       שמחים שבחרתם להזמין מאיתנו. בעמוד הזה תוכלו להרכיב הזמנה אישית מתוך מגוון מוצרים מובחרים.<br>
       פשוט מלאו את הפרטים האישיים שלכם, בחרו את המוצרים שתרצו להזמין עם הכמות המתאימה, והמערכת תחשב לכם אוטומטית את הסכום הכולל כולל משלוח.<br>
-      שימו ❤️, מוצרים הנמכרים לפי משקל ניתנים להזמנה החל מ-0.5 ק״ג, ובקפיצות של 0.25 ק״ג<br>
+      שימו ❤️,  מוצרים הנמכרים לפי משקל ניתנים להזמנה החל מ-0.5 ק״ג, ובקפיצות של 0.1 ק״ג<br>
       לאחר שתסיימו, לחצו על הכפתור בתחתית הדף וההזמנה תישלח אלינו ישירות בוואטסאפ.<br>
+      🐿️ לשאלות ובירורים נוספים ניתן ליצור קשר בוואצאפ ל 050-9369944 צוות ינקולה<br>
       אם תגיעו ל-300 ₪ ומעלה תיפתח לכם האפשרות לבחור הטבה שווה במתנה!
     </div>
     <label for="fullname">שם מלא</label>
@@ -206,7 +205,7 @@
 
     <div id="promo-container">
       <label for="promo">בחר הטבה</label>
-      <select id="promo">
+      <select id="promo" onchange="updateTotal()">
         <option value="">על מנת לקבל הטבה יש להרכיב סל ב-300 ש"ח לפחות</option>
         <option value="10">סילאן טבעי לחיץ ב10₪ במקום 14₪</option>
         <option value="16">צ׳יה שחורה חצי ק״ג ב16₪ במקום 22₪</option>
@@ -248,7 +247,7 @@
       const input = document.createElement('input');
       input.type = 'number';
       input.min = product.is_weighted ? 0.5 : 1;
-      input.step = product.is_weighted ? 0.25 : 1;
+      input.step = product.is_weighted ? 0.1 : 1;
       input.value = '';
       input.id = `quantity-${index}`;
 
@@ -285,9 +284,9 @@
       input.addEventListener('input', updateTotal);
 
       wrapper.appendChild(plus);
-      row.appendChild(input);
-      row.appendChild(minus);
       wrapper.appendChild(row);
+      row.appendChild(minus);
+      row.appendChild(input);
 
       return wrapper;
     }
