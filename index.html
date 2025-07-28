@@ -322,7 +322,33 @@
     
       return wrapper;
     }
-
+    function sendToWhatsApp() {
+      const name = document.getElementById('fullname').value;
+      const phone = document.getElementById('phone').value;
+      const address = document.getElementById('address').value;
+      const region = document.getElementById('region').value;
+      const notes = document.getElementById('notes').value;
+    
+      let message = `הזמנה מ: ${name}%0Aטלפון: ${phone}%0Aכתובת: ${address}%0Aאזור: ${region}%0A`;
+    
+      products.forEach((product, index) => {
+        const qtyInput = document.getElementById(`quantity-${index}`);
+        const qty = parseFloat(qtyInput.value);
+        if (!isNaN(qty)) {
+          message += `%0A${product.name} - ${qty} x ${product.price} ₪`;
+        }
+      });
+    
+      const totalText = document.getElementById("total").textContent;
+      message += `%0A%0A${totalText}`;
+    
+      if (notes) {
+        message += `%0A%0Aהערות: ${notes}`;
+      }
+    
+      const url = `https://wa.me/972509369944?text=${message}`;
+      window.open(url, '_blank');
+    }
 
     function buildTable() {
       const container = document.getElementById('product-table');
