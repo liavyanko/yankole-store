@@ -68,8 +68,10 @@
       align-items: center;
       gap: 6px;
     }
-    .quantity-controls .button-row {
+    .button-row {
       display: flex;
+      align-items: center;
+      justify-content: center;
       gap: 6px;
     }
     .quantity-controls button {
@@ -81,18 +83,15 @@
       background: #eee;
       cursor: pointer;
       width: 36px;
+      height: 36px;
+      line-height: 1;
     }
     .quantity-controls input[type="number"] {
       width: 70px;
       text-align: center;
       font-size: 16px;
-    }
-    input[type="number"] {
-      min-width: 70px;
-      max-width: 80px;
-      width: 100%;
-      text-align: center;
-      font-size: 16px;
+      height: 36px;
+      box-sizing: border-box;
     }
     input:invalid {
       border-color: red;
@@ -244,7 +243,7 @@
       plus.textContent = '+';
 
       const row = document.createElement('div');
-      row.className = 'quantity-controls-row';
+      row.className = 'button-row';
 
       const input = document.createElement('input');
       input.type = 'number';
@@ -340,23 +339,28 @@
         }
       });
 
+      const promo = document.getElementById('promo');
+      if (promo && promo.value) {
+        total += parseFloat(promo.value);
+      }
+
       const region = document.getElementById('region').value;
       let shipping = 0;
-      if (['שרון', 'מרכז'].includes(region)) shipping = 10;
-      else if (region === 'תל אביב') shipping = 20;
-      else if (region === 'חיפה') shipping = 30;
-      else if (region === 'צפון') shipping = 35;
-      else if (region === 'אחר') document.getElementById('shipping-note').textContent = 'למשלוח יש ליצור קשר ב-0509369944';
-      else document.getElementById('shipping-note').textContent = '';
+      if (["שרון", "מרכז"].includes(region)) shipping = 10;
+      else if (region === "תל אביב") shipping = 20;
+      else if (region === "חיפה") shipping = 30;
+      else if (region === "צפון") shipping = 35;
+      else if (region === "אחר") document.getElementById("shipping-note").textContent = "למשלוח יש ליצור קשר ב-0509369944";
+      else document.getElementById("shipping-note").textContent = "";
 
-      document.getElementById('total').textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
+      document.getElementById("total").textContent = `סה"כ: ${(total + shipping).toFixed(2)} ₪ (${shipping} ₪ משלוח)`;
 
-      const promoContainer = document.getElementById('promo-container');
+      const promoContainer = document.getElementById("promo-container");
       if (total >= 300) {
-        promoContainer.style.display = 'block';
+        promoContainer.style.display = "block";
       } else {
-        promoContainer.style.display = 'none';
-        document.getElementById('promo').value = '';
+        promoContainer.style.display = "none";
+        document.getElementById("promo").value = "";
       }
     }
   </script>
