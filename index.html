@@ -226,7 +226,8 @@
       <option value="אחר">אחר</option>
     </select>
     <label for="search">חיפוש מוצר או קטגוריה</label>
-    <input type="text" id="search" placeholder="לדוגמה: אנטריקוט או בשר" oninput="filterProducts()" />
+    <input type="text" id="search" placeholder="חפש לפי שם מוצר..." oninput="handleAutocomplete()" autocomplete="off" />
+    <ul id="autocomplete-list" style="list-style: none; padding: 0; margin: 0;"></ul>
     <div id="product-table"></div>
 
     <div id="promo-container">
@@ -471,6 +472,63 @@
           tableWrapper.classList.toggle('hidden');
           header.classList.toggle('collapsed');
         });
+      });
+    }
+    function handleAutocomplete() {
+      const input = document.getElementById("search");
+      const list = document.getElementById("autocomplete-list");
+      const value = input.value.toLowerCase().trim();
+    
+      list.innerHTML = "";
+    
+      if (value === "") {
+        document.querySelectorAll(".category-section").forEach(section => section.style.display = "block");
+        return;
+      }
+    
+      const matches = products.filter(product => product.name.toLowerCase().includes(value));
+    
+      const added = new Set();
+    
+      matches.forEach(product => {
+        if (!added.has(product.name)) {
+          const li = document.createElement("li");
+          li.textContent = product.name;
+          li.style.cursor = "pointer";
+          li.style.padding = "6px";
+          li.style.borderBottom = "1px solid #ddd";
+          li.addEventListener("click", () => {
+            input.value = product.name;
+            list.innerHTML = "";
+            showOnlyProduct(product.name);
+          });
+          list.appendChild(li);
+          added.add(product.name);
+        }
+      });
+    }
+    
+    function showOnlyProduct(productName) {
+      document.querySelectorAll(".category-section").forEach(section => {
+        const rows = section.querySelectorAll("table tr");
+        let found = false;
+    
+        for (let i = 1; i < rows.length; i++) {
+          const cellText = rows[i].querySelector("td")?.textContent || "";
+          if (cellText === productName) {
+            rows[i].style.display = "";
+            section.style.display = "block";
+            section.querySelector(".category-products").classList.remove("hidden");
+            section.querySelector(".category-header").classList.remove("collapsed");
+            found = true;
+          } else {
+            rows[i].style.display = "none";
+          }
+        }
+    
+        if (!found) {
+          section.style.display = "none";
+        }
       });
     }
     function filterProducts() {
