@@ -172,6 +172,15 @@
       border: 1px solid #ccc;
       border-radius: 6px;
     }
+    .category-header::after {
+      content: '▼';
+      float: left;
+      transition: transform 0.3s ease;
+    }
+    
+    .category-header.collapsed::after {
+      transform: rotate(-90deg);
+    }
     .category-products {
       margin-top: 10px;
     }
@@ -391,7 +400,7 @@
       const url = `https://wa.me/972509369944?text=${message}`;
       window.open(url, '_blank');
     }
-
+    
     function buildTable() {
       const container = document.getElementById('product-table');
       container.innerHTML = '';
@@ -399,8 +408,7 @@
       const categories = [];
       const categoryMap = {};
     
-      products.forEach((product, index) => {
-        product.index = index; // נדרש כדי לזהות את השדה בהמשך
+      products.forEach(product => {
         const cat = product.category || 'ללא קטגוריה';
         if (!categoryMap[cat]) {
           categoryMap[cat] = [];
@@ -414,7 +422,7 @@
         section.className = 'category-section';
     
         const header = document.createElement('div');
-        header.className = 'category-header';
+        header.className = 'category-header collapsed';
         header.textContent = category;
     
         const tableWrapper = document.createElement('div');
@@ -429,7 +437,7 @@
         });
         table.appendChild(headerRow);
     
-        categoryMap[category].forEach(product => {
+        categoryMap[category].forEach((product, index) => {
           const row = document.createElement('tr');
     
           const nameCell = document.createElement('td');
@@ -441,7 +449,7 @@
           row.appendChild(priceCell);
     
           const quantityCell = document.createElement('td');
-          const control = createQuantityControl(product, product.index);
+          const control = createQuantityControl(product, index);
           quantityCell.appendChild(control);
           row.appendChild(quantityCell);
     
@@ -453,11 +461,14 @@
         section.appendChild(tableWrapper);
         container.appendChild(section);
     
+        // Toggle open/close with arrow rotation
         header.addEventListener('click', () => {
           tableWrapper.classList.toggle('hidden');
+          header.classList.toggle('collapsed');
         });
       });
     }
+
 
     function updateTotal() {
       let total = 0;
