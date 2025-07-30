@@ -475,38 +475,35 @@
       });
     }
     function handleAutocomplete() {
-      const input = document.getElementById("search");
-      const list = document.getElementById("autocomplete-list");
-      const value = input.value.toLowerCase().trim();
+      const input = document.getElementById('search-input');
+      const term = input.value.trim().toLowerCase();
+      const suggestions = document.getElementById('suggestions');
     
-      list.innerHTML = "";
+      suggestions.innerHTML = '';
     
-      if (value === "") {
-        document.querySelectorAll(".category-section").forEach(section => section.style.display = "block");
+      if (term === '') {
+        // אם שדה ריק, בונים מחדש את הטבלה המלאה
+        buildTable();
         return;
       }
     
-      const matches = products.filter(product => product.name.toLowerCase().includes(value));
+      const matches = products
+        .filter(p => p.name.toLowerCase().includes(term))
+        .map(p => p.name);
     
-      const added = new Set();
-    
-      matches.forEach(product => {
-        if (!added.has(product.name)) {
-          const li = document.createElement("li");
-          li.textContent = product.name;
-          li.style.cursor = "pointer";
-          li.style.padding = "6px";
-          li.style.borderBottom = "1px solid #ddd";
-          li.addEventListener("click", () => {
-            input.value = product.name;
-            list.innerHTML = "";
-            showOnlyProduct(product.name);
-          });
-          list.appendChild(li);
-          added.add(product.name);
-        }
+      matches.forEach(name => {
+        const item = document.createElement('div');
+        item.textContent = name;
+        item.className = 'suggestion-item';
+        item.onclick = () => {
+          input.value = name;
+          suggestions.innerHTML = '';
+          showOnlyProduct(name);
+        };
+        suggestions.appendChild(item);
       });
     }
+
     
     function showOnlyProduct(productName) {
       document.querySelectorAll(".category-section").forEach(section => {
