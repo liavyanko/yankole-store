@@ -187,6 +187,16 @@
     .hidden {
       display: none;
     }   
+    #autocomplete-list {
+      position: relative;
+      background-color: #ffffff;
+      border: 1px solid #ccc;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 10;
+      margin-top: -10px;
+    }
+
   </style>
 </head>
 <body>
@@ -474,60 +484,67 @@
         });
       });
     }
-    function handleAutocomplete() {
-      const input = document.getElementById('search');
-      const term = input.value.trim().toLowerCase();
-      const suggestions = document.getElementById('suggestions');
+   function handleAutocomplete() {
+    const input = document.getElementById('search');
+    const list = document.getElementById('autocomplete-list');
+    const searchTerm = input.value.trim().toLowerCase();
     
-      suggestions.innerHTML = '';
-    
-      if (term === '') {
-        // אם שדה ריק, בונים מחדש את הטבלה המלאה
-        buildTable();
-        return;
-      }
-    
-      const matches = products
-        .filter(p => p.name.toLowerCase().includes(term))
-        .map(p => p.name);
-    
-      matches.forEach(name => {
-        const item = document.createElement('div');
-        item.textContent = name;
-        item.className = 'suggestion-item';
-        item.onclick = () => {
-          input.value = name;
-          suggestions.innerHTML = '';
-          showOnlyProduct(name);
-        };
-        suggestions.appendChild(item);
-      });
+    list.innerHTML = ''; // נקה הצעות ישנות
+  
+    if (searchTerm === '') {
+      buildTable(); // בנה את הטבלה מחדש
+      return;
     }
+  
+    const matches = products.filter(p => p.name.toLowerCase().includes(searchTerm));
+    
+    if (matches.length === 0) {
+      return;
+    }
+  
+    matches.forEach(match => {
+      const item = document.createElement('li');
+      item.textContent = match.name;
+      item.style.cursor = 'pointer';
+      item.style.padding = '8px';
+      item.style.borderBottom = '1px solid #ccc';
+      item.style.backgroundColor = '#fff';
+  
+      item.addEventListener('click', () => {
+        input.value = match.name;
+        list.innerHTML = '';
+        showOnlyProduct(match.name);
+      });
+  
+      list.appendChild(item);
+    });
+  }
 
     
     function showOnlyProduct(productName) {
-      document.querySelectorAll(".category-section").forEach(section => {
-        const rows = section.querySelectorAll("table tr");
-        let found = false;
-    
-        for (let i = 1; i < rows.length; i++) {
-          const cellText = rows[i].querySelector("td")?.textContent || "";
-          if (cellText === productName) {
-            rows[i].style.display = "";
-            section.style.display = "block";
-            section.querySelector(".category-products").classList.remove("hidden");
-            section.querySelector(".category-header").classList.remove("collapsed");
-            found = true;
-          } else {
-            rows[i].style.display = "none";
-          }
-        }
-    
-        if (!found) {
-          section.style.display = "none";
-        }
-      });
+  document.querySelectorAll(".category-section").forEach(section => {
+    const rows = section.querySelectorAll("table tr");
+    let found = false;
+
+    for (let i = 1; i < rows.length; i++) {
+      const cellText = rows[i].querySelector("td")?.textContent || "";
+      if (cellText === productName) {
+        rows[i].style.display = "";
+        section.style.display = "block";
+        section.querySelector(".category-products").classList.remove("hidden");
+        section.querySelector(".category-header").classList.remove("collapsed");
+        found = true;
+      } else {
+        rows[i].style.display = "none";
+      }
     }
+
+    if (!found) {
+      section.style.display = "none";
+    }
+  });
+}
+
     function filterProducts() {
       const searchValue = document.getElementById("search").value.trim().toLowerCase();
       const sections = document.querySelectorAll(".category-section");
