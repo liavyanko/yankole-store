@@ -846,18 +846,6 @@
         saveCartToLocalStorage();
         saveFormDataToLocalStorage();
       }
-      function saveFormDataToLocalStorage() {
-        const data = {
-          fullname: document.getElementById("fullname").value,
-          phone: document.getElementById("phone").value,
-          region: document.getElementById("region").value,
-          address: document.getElementById("address")?.value || '',
-          notes: document.getElementById("notes").value,
-          promo: document.getElementById("promo")?.value || ''
-        };
-        localStorage.setItem("formData", JSON.stringify(data));
-      }
-
 
       let shipping = 0;
       if (["שרון", "מרכז"].includes(region)) shipping = 10;
@@ -880,7 +868,18 @@
       updateCart(); 
     }
     let giftShown = false; // משתנה כדי לוודא שהפופ־אפ לא יופיע שוב
-    
+      function saveFormDataToLocalStorage() {
+        const data = {
+          fullname: document.getElementById("fullname").value,
+          phone: document.getElementById("phone").value,
+          region: document.getElementById("region").value,
+          address: document.getElementById("address")?.value || '',
+          notes: document.getElementById("notes").value,
+          promo: document.getElementById("promo")?.value || ''
+        };
+        localStorage.setItem("formData", JSON.stringify(data));
+      }
+
     function maybeShowGiftPopup(subtotal) {
       if (!giftShown && subtotal >= 300) {
         document.getElementById("gift-popup").classList.remove("hidden");
@@ -975,8 +974,27 @@
       });
       localStorage.setItem('cartData', JSON.stringify(cartData));
     }
-    
-        
+    document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("fullname").addEventListener("input", saveFormDataToLocalStorage);
+    document.getElementById("phone").addEventListener("input", saveFormDataToLocalStorage);
+    document.getElementById("notes").addEventListener("input", saveFormDataToLocalStorage);
+    document.getElementById("promo").addEventListener("change", saveFormDataToLocalStorage);
+    document.getElementById("region").addEventListener("change", () => {
+      updateTotal();
+      saveFormDataToLocalStorage();
+    });
+  
+    // מאחר שהשדה כתובת לפעמים נוצר דינמית (input רגיל או disabled)
+    // נוסיף מאזין קטן אחרי טעינת הדף
+    setTimeout(() => {
+      const addressField = document.getElementById("address");
+      if (addressField && !addressField.disabled) {
+        addressField.addEventListener("input", saveFormDataToLocalStorage);
+      }
+    }, 300);
+  });
+  
+          
   </script>
 </body>
 </html>
