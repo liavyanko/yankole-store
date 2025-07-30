@@ -468,10 +468,15 @@
       .then(data => {
         products = data;
         buildTable();
-        loadCartFromLocalStorage();     // קודם כל המוצרים
-        loadFormDataFromLocalStorage(); // ואז השדות האישיים
-        updateTotal();                  // רק עכשיו הסה"כ
+    
+        // הבטחה שכל הטבלה נטענה לפני שממשיכים
+        setTimeout(() => {
+          loadCartFromLocalStorage();     // קודם כל המוצרים
+          loadFormDataFromLocalStorage(); // ואז השדות האישיים
+          updateTotal();                  // רק עכשיו הסה"כ
+        }, 100); // אפשר גם 200 מ"ש אם יש צורך
       });
+
 
       function loadFormDataFromLocalStorage() {
         const data = JSON.parse(localStorage.getItem("formData") || "{}");
