@@ -1029,7 +1029,6 @@
       if (regionField) {
         regionField.addEventListener("change", () => {
           updateTotal(); // זה גם יוצר את שדה הכתובת מחדש אם צריך
-          setupAddressListener(); // ואז מוסיף לו האזנה
           saveFormDataToLocalStorage(); // וגם שומר מיידית
         });
       }
