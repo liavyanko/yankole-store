@@ -412,8 +412,17 @@
       <option value="אחר">אחר</option>
     </select>
     <label for="search">חיפוש מוצר או קטגוריה</label>
-    <div style="position: relative;">
-      <input type="text" id="search" placeholder="חפש לפי שם מוצר..." oninput="handleAutocomplete()" autocomplete="off" style="padding-left: 30px;" />
+     <div style="position: relative;">
+    <input type="text" id="search" placeholder="חפש לפי שם מוצר..." oninput="handleAutocomplete()" autocomplete="off" style="padding-left: 30px;" />
+    <span id="clear-search" onclick="clearSearch()" style="
+      position: absolute;
+      left: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 16px;
+      color: #666;">✖</span>
+    </div>
       <button id="clear-search" onclick="clearSearch()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 20px; cursor: pointer; color: #999;">×</button>
     </div>
     <ul id="autocomplete-list" style="list-style: none; padding: 0; margin: 0;"></ul>
