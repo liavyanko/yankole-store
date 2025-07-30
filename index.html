@@ -400,7 +400,7 @@
     </div>
 
     <label for="region">אזור מגורים</label>
-    <select id="region" onchange="updateTotal()" required>
+    <select id="region" onchange="()" required>
       <option value="">בחר אזור</option>
       <option value="שרון">שרון</option>
       <option value="מרכז">מרכז</option>
@@ -845,23 +845,11 @@
         document.getElementById("shipping-note").textContent = '';
       } else {
         if (!addressContainer.querySelector('input:not([disabled])')) {
-          addressContainer.innerHTML = `
-            <input type="text" id="address" required />
-          `;
+          addressContainer.innerHTML = `<input type="text" id="address" required />`;
+          setupAddressListener(); // ← שים כאן
         }
-        saveCartToLocalStorage();
-        saveFormDataToLocalStorage();
-        ["fullname", "phone", "region", "notes", "promo"].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.addEventListener("input", saveFormDataToLocalStorage);
-        }
-      });
-      
-      document.getElementById("address-container").addEventListener("input", () => {
-        saveFormDataToLocalStorage(); // עבור כתובת (היא עשויה להיווצר דינמית)
-      });
 
+        saveCartToLocalStorage();
       }
 
       let shipping = 0;
@@ -1000,17 +988,9 @@
           el.addEventListener("input", saveFormDataToLocalStorage);
           el.addEventListener("change", saveFormDataToLocalStorage);
         }
+      setupAddressListener();
       });
     
-      // גם address (אם נוצר ולא disabled)
-      const setupAddressListener = () => {
-        const addressField = document.getElementById("address");
-        if (addressField && !addressField.disabled) {
-          addressField.addEventListener("input", saveFormDataToLocalStorage);
-        }
-      };
-    
-      setupAddressListener();
     
       const regionField = document.getElementById("region");
       if (regionField) {
@@ -1032,7 +1012,15 @@
       }
     }, 300);
   });
-  
+    
+  function setupAddressListener() {
+  const addressField = document.getElementById("address");
+  if (addressField && !addressField.disabled && !addressField.dataset.listenerAttached) {
+    addressField.addEventListener("input", saveFormDataToLocalStorage);
+    addressField.dataset.listenerAttached = "true";
+  }
+}
+
           
   </script>
 </body>
