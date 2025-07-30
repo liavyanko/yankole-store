@@ -462,20 +462,16 @@
 
   <script>
     let products = [];
+      
+      fetch('products.json')
+        .then(res => res.json())
+        .then(data => {
+          products = data;
+          buildTable();
+          restoreCartFromLocalStorage();      // ← לשחזר את כמויות המוצרים
+          restoreFormDataFromLocalStorage();  // ← לשחזר את שדות הטופס
+        });
 
-    fetch('products.json')
-      .then(res => res.json())
-      .then(data => {
-        products = data;
-        buildTable();
-    
-        // הבטחה שכל הטבלה נטענה לפני שממשיכים
-        setTimeout(() => {
-          loadCartFromLocalStorage();     // קודם כל המוצרים
-          loadFormDataFromLocalStorage(); // ואז השדות האישיים
-          updateTotal();                  // רק עכשיו הסה"כ
-        }, 100); // אפשר גם 200 מ"ש אם יש צורך
-      });
 
 
       function loadFormDataFromLocalStorage() {
@@ -879,16 +875,46 @@
     }
     let giftShown = false; // משתנה כדי לוודא שהפופ־אפ לא יופיע שוב
       function saveFormDataToLocalStorage() {
-        const data = {
+        const formData = {
           fullname: document.getElementById("fullname").value,
           phone: document.getElementById("phone").value,
+          address: document.getElementById("address")?.value || "",
           region: document.getElementById("region").value,
-          address: document.getElementById("address")?.value || '',
           notes: document.getElementById("notes").value,
-          promo: document.getElementById("promo")?.value || ''
+          promo: document.getElementById("promo").value
         };
-        localStorage.setItem("formData", JSON.stringify(data));
+      
+        localStorage.setItem("formData", JSON.stringify(formData));
       }
+
+      function restoreFormDataFromLocalStorage() {
+        const formData = JSON.parse(localStorage.getItem("formData") || "{}");
+      
+        document.getElementById("fullname").value = formData.fullname || "";
+        document.getElementById("phone").value = formData.phone || "";
+        document.getElementById("notes").value = formData.notes || "";
+        document.getElementById("region").value = formData.region || "";
+        document.getElementById("promo").value = formData.promo || "";
+      
+        if (formData.address && document.getElementById("address") && !document.getElementById("address").disabled) {
+          document.getElementById("address").value = formData.address;
+        }
+      }
+
+    
+    function restoreCartFromLocalStorage() {
+      const savedCart = JSON.parse(localStorage.getItem("cartData") || "{}");
+    
+      products.forEach((product, index) => {
+        const qty = savedCart[index];
+        const input = document.getElementById(`quantity-${index}`);
+        if (input && !isNaN(qty)) {
+          input.value = qty;
+        }
+      });
+    
+      updateTotal();
+    }
 
     function maybeShowGiftPopup(subtotal) {
       if (!giftShown && subtotal >= 300) {
@@ -984,18 +1010,20 @@
       });
       localStorage.setItem('cartData', JSON.stringify(cartData));
     }
-    document.addEventListener("DOMContentLoaded", () => {
-      // האזנה קבועה לכל שדות הטופס
-      const fields = ["fullname", "phone", "region", "notes", "promo"];
-      fields.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-          el.addEventListener("input", saveFormDataToLocalStorage);
-          el.addEventListener("change", saveFormDataToLocalStorage);
-        }
-      setupAddressListener();
+      document.addEventListener("DOMContentLoaded", () => {
+        const fields = ["fullname", "phone", "region", "notes", "promo"];
+        fields.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.addEventListener("input", saveFormDataToLocalStorage);
+            el.addEventListener("change", saveFormDataToLocalStorage);
+          }
+        });
+      
+        setupAddressListener();
+        restoreFormDataFromLocalStorage(); // 👈 שורת הקסם
       });
-    
+
     
       const regionField = document.getElementById("region");
       if (regionField) {
