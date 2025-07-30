@@ -986,15 +986,37 @@
       localStorage.setItem('cartData', JSON.stringify(cartData));
     }
     document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("fullname").addEventListener("input", saveFormDataToLocalStorage);
-    document.getElementById("phone").addEventListener("input", saveFormDataToLocalStorage);
-    document.getElementById("notes").addEventListener("input", saveFormDataToLocalStorage);
-    document.getElementById("promo").addEventListener("change", saveFormDataToLocalStorage);
-    document.getElementById("region").addEventListener("change", () => {
-      updateTotal();
-      saveFormDataToLocalStorage();
+      // האזנה קבועה לכל שדות הטופס
+      const fields = ["fullname", "phone", "region", "notes", "promo"];
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener("input", saveFormDataToLocalStorage);
+          el.addEventListener("change", saveFormDataToLocalStorage);
+        }
+      });
+    
+      // גם address (אם נוצר ולא disabled)
+      const setupAddressListener = () => {
+        const addressField = document.getElementById("address");
+        if (addressField && !addressField.disabled) {
+          addressField.addEventListener("input", saveFormDataToLocalStorage);
+        }
+      };
+    
+      setupAddressListener();
+    
+      const regionField = document.getElementById("region");
+      if (regionField) {
+        regionField.addEventListener("change", () => {
+          updateTotal(); // זה גם יוצר את שדה הכתובת מחדש אם צריך
+          setupAddressListener(); // ואז מוסיף לו האזנה
+          saveFormDataToLocalStorage(); // וגם שומר מיידית
+        });
+      }
+    
+      loadFormDataFromLocalStorage(); // טען כל מה שנשמר
     });
-  
     // מאחר שהשדה כתובת לפעמים נוצר דינמית (input רגיל או disabled)
     // נוסיף מאזין קטן אחרי טעינת הדף
     setTimeout(() => {
