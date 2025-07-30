@@ -468,9 +468,11 @@
       .then(data => {
         products = data;
         buildTable();
-        loadCartFromLocalStorage();
-        loadFormDataFromLocalStorage();
+        loadCartFromLocalStorage();     // קודם כל המוצרים
+        loadFormDataFromLocalStorage(); // ואז השדות האישיים
+        updateTotal();                  // רק עכשיו הסה"כ
       });
+
       function loadFormDataFromLocalStorage() {
         const data = JSON.parse(localStorage.getItem("formData") || "{}");
         document.getElementById("fullname").value = data.fullname || "";
@@ -543,7 +545,11 @@
       input.type = 'number';
       input.min = product.is_weighted ? 0.5 : 1;
       input.step = product.is_weighted ? 0.1 : 1;
-      input.value = '';
+      const savedValue = localStorage.getItem('cartData');
+      if (savedValue) {
+        const parsed = JSON.parse(savedValue);
+        input.value = parsed[`quantity-${index}`] || '';
+      }
       input.id = `quantity-${index}`;
       input.style.width = '70px';
       input.style.height = '40px';
