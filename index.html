@@ -468,7 +468,38 @@
       .then(data => {
         products = data;
         buildTable();
+        loadCartFromLocalStorage();
+        loadFormDataFromLocalStorage();
       });
+      function loadFormDataFromLocalStorage() {
+        const data = JSON.parse(localStorage.getItem("formData") || "{}");
+        document.getElementById("fullname").value = data.fullname || "";
+        document.getElementById("phone").value = data.phone || "";
+        document.getElementById("region").value = data.region || "";
+        document.getElementById("notes").value = data.notes || "";
+        if (data.promo) document.getElementById("promo").value = data.promo;
+        if (data.region) updateTotal(); // כדי להפעיל את עדכון המשלוח + כתובת
+        setTimeout(() => {
+          const addr = document.getElementById("address");
+          if (addr && !addr.disabled) {
+            addr.value = data.address || "";
+          }
+        }, 300);
+      }
+
+    function loadCartFromLocalStorage() {
+      const data = localStorage.getItem('cartData');
+      if (data) {
+        const cartData = JSON.parse(data);
+        Object.entries(cartData).forEach(([id, value]) => {
+          const input = document.getElementById(id);
+          if (input) {
+            input.value = value;
+            input.dispatchEvent(new Event("input"));
+          }
+        });
+      }
+    }
 
         function createQuantityControl(product, index) {
       const wrapper = document.createElement('div');
@@ -610,6 +641,9 @@
 
       const url = `https://wa.me/972509369944?text=${message}`;
       window.open(url, '_blank');
+      localStorage.removeItem('formData');
+      localStorage.removeItem('cartData');
+
     }
     
     function buildTable() {
@@ -809,6 +843,19 @@
             <input type="text" id="address" required />
           `;
         }
+        saveCartToLocalStorage();
+        saveFormDataToLocalStorage();
+      }
+      function saveFormDataToLocalStorage() {
+        const data = {
+          fullname: document.getElementById("fullname").value,
+          phone: document.getElementById("phone").value,
+          region: document.getElementById("region").value,
+          address: document.getElementById("address")?.value || '',
+          notes: document.getElementById("notes").value,
+          promo: document.getElementById("promo")?.value || ''
+        };
+        localStorage.setItem("formData", JSON.stringify(data));
       }
 
 
@@ -919,7 +966,17 @@
       document.getElementById("cart-total-price").textContent = totalPrice.toFixed(2) + " ₪";
       document.getElementById("cart-count").textContent = totalItems;
     }
+    function saveCartToLocalStorage() {
+      const cartData = {};
+      products.forEach((product, index) => {
+        const qtyInput = document.getElementById(`quantity-${index}`);
+        const qty = qtyInput?.value;
+        if (qty) cartData[`quantity-${index}`] = qty;
+      });
+      localStorage.setItem('cartData', JSON.stringify(cartData));
+    }
     
+        
   </script>
 </body>
 </html>
