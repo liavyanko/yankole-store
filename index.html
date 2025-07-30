@@ -412,7 +412,10 @@
       <option value="אחר">אחר</option>
     </select>
     <label for="search">חיפוש מוצר או קטגוריה</label>
-    <input type="text" id="search" placeholder="חפש לפי שם מוצר..." oninput="handleAutocomplete()" autocomplete="off" />
+    <div style="position: relative;">
+      <input type="text" id="search" placeholder="חפש לפי שם מוצר..." oninput="handleAutocomplete()" autocomplete="off" style="padding-left: 30px;" />
+      <button id="clear-search" onclick="clearSearch()" style="position: absolute; right: 5px; top: 50%; transform: translateY(-50%); background: transparent; border: none; font-size: 20px; cursor: pointer; color: #999;">×</button>
+    </div>
     <ul id="autocomplete-list" style="list-style: none; padding: 0; margin: 0;"></ul>
     <div id="product-table"></div>
     <div id="promo-container">
@@ -759,8 +762,14 @@
       list.appendChild(item);
     });
   }
+    function clearSearch() {
+      const input = document.getElementById("search");
+      const list = document.getElementById("autocomplete-list");
+      input.value = "";
+      list.innerHTML = "";
+      buildTable();
+    }
 
-    
     function showOnlyProduct(productName) {
   document.querySelectorAll(".category-section").forEach(section => {
     const rows = section.querySelectorAll("table tr");
