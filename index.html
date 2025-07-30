@@ -773,68 +773,6 @@
       });
     }
 
-    function updateCart() {
-      const cartContainer = document.getElementById('cart-items');
-      cartContainer.innerHTML = '';
-    
-      products.forEach((product, index) => {
-        const qtyInput = document.getElementById(`quantity-${index}`);
-        const qty = parseFloat(qtyInput.value);
-        if (!isNaN(qty) && qty > 0) {
-          const item = document.createElement('div');
-          item.className = 'cart-item';
-    
-          const name = document.createElement('div');
-          name.className = 'cart-item-name';
-          name.textContent = product.name;
-    
-          const controls = document.createElement('div');
-          controls.className = 'cart-item-controls';
-    
-          const minus = document.createElement('button');
-          minus.textContent = '-';
-          minus.onclick = () => {
-            let val = parseFloat(qtyInput.value);
-            const step = parseFloat(qtyInput.step);
-            const min = parseFloat(qtyInput.min);
-            if (val > min) {
-              qtyInput.value = (val - step).toFixed(2);
-            } else {
-              qtyInput.value = '';
-            }
-            qtyInput.dispatchEvent(new Event('input'));
-          };
-    
-          const plus = document.createElement('button');
-          plus.textContent = '+';
-          plus.onclick = () => {
-            let val = parseFloat(qtyInput.value) || parseFloat(qtyInput.min);
-            const step = parseFloat(qtyInput.step);
-            qtyInput.value = (val + step).toFixed(2);
-            qtyInput.dispatchEvent(new Event('input'));
-          };
-    
-          const remove = document.createElement('span');
-          remove.textContent = '🗑';
-          remove.className = 'cart-item-remove';
-          remove.onclick = () => {
-            qtyInput.value = '';
-            qtyInput.dispatchEvent(new Event('input'));
-          };
-    
-          controls.appendChild(minus);
-          controls.appendChild(qtyInput.cloneNode(true)); // הצגת כמות נוכחית ללא שינוי
-          controls.appendChild(plus);
-          controls.appendChild(remove);
-    
-          item.appendChild(name);
-          item.appendChild(controls);
-    
-          cartContainer.appendChild(item);
-        }
-      });
-    }
-
 
     function updateTotal() {
       let total = 0;
