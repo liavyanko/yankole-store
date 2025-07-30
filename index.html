@@ -1021,8 +1021,10 @@
         });
       
         setupAddressListener();
-        restoreFormDataFromLocalStorage(); // 👈 שורת הקסם
-      });
+        restoreFormDataFromLocalStorage(); // כאן טוענים את מה שנשמר
+      
+      }); // ← זו הסגירה היחידה שצריכה להיות
+
 
     
       const regionField = document.getElementById("region");
