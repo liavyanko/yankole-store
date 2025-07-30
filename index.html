@@ -398,8 +398,13 @@
   <div id="total-container">
     <div id="total">סה"כ: 0 ₪</div>
     <div id="shipping-note"></div>
+  
+    <!-- כאן הוספנו את כפתור העגלה -->
+    <button onclick="showCart()" style="margin-top: 10px; background-color: #ffa000; color: white; border: none; padding: 10px 16px; border-radius: 8px; font-size: 16px; cursor: pointer;">
+      🛒 העגלה שלך
+    </button>
   </div>
-
+  
   <script>
     let products = [];
 
@@ -887,7 +892,6 @@
       document.getElementById("cart-total-price").textContent = totalPrice.toFixed(2) + " ₪";
       document.getElementById("cart-count").textContent = totalItems;
     }
-
     
   </script>
 </body>
