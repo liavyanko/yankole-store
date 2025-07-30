@@ -196,6 +196,37 @@
       z-index: 10;
       margin-top: -10px;
     }
+    #cart-container {
+  background: #fffde7;
+  padding: 15px;
+  border: 1px solid #ffd54f;
+  border-radius: 10px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item:last-child {
+      border-bottom: none;
+    }
+    .cart-item-name {
+      flex: 2;
+    }
+    .cart-item-controls {
+      flex: 1.5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+    .cart-item-remove {
+      color: red;
+      cursor: pointer;
+      font-weight: bold;
+    }
 
   </style>
 </head>
@@ -239,7 +270,10 @@
     <input type="text" id="search" placeholder="חפש לפי שם מוצר..." oninput="handleAutocomplete()" autocomplete="off" />
     <ul id="autocomplete-list" style="list-style: none; padding: 0; margin: 0;"></ul>
     <div id="product-table"></div>
-
+    <div id="cart-container" style="margin-top: 30px;">
+      <h2>העגלה שלך 🛒</h2>
+      <div id="cart-items"></div>
+    </div>
     <div id="promo-container">
       <label for="promo">בחר הטבה</label>
       <select id="promo" onchange="updateTotal()">
@@ -574,6 +608,68 @@
       });
     }
 
+    function updateCart() {
+      const cartContainer = document.getElementById('cart-items');
+      cartContainer.innerHTML = '';
+    
+      products.forEach((product, index) => {
+        const qtyInput = document.getElementById(`quantity-${index}`);
+        const qty = parseFloat(qtyInput.value);
+        if (!isNaN(qty) && qty > 0) {
+          const item = document.createElement('div');
+          item.className = 'cart-item';
+    
+          const name = document.createElement('div');
+          name.className = 'cart-item-name';
+          name.textContent = product.name;
+    
+          const controls = document.createElement('div');
+          controls.className = 'cart-item-controls';
+    
+          const minus = document.createElement('button');
+          minus.textContent = '-';
+          minus.onclick = () => {
+            let val = parseFloat(qtyInput.value);
+            const step = parseFloat(qtyInput.step);
+            const min = parseFloat(qtyInput.min);
+            if (val > min) {
+              qtyInput.value = (val - step).toFixed(2);
+            } else {
+              qtyInput.value = '';
+            }
+            qtyInput.dispatchEvent(new Event('input'));
+          };
+    
+          const plus = document.createElement('button');
+          plus.textContent = '+';
+          plus.onclick = () => {
+            let val = parseFloat(qtyInput.value) || parseFloat(qtyInput.min);
+            const step = parseFloat(qtyInput.step);
+            qtyInput.value = (val + step).toFixed(2);
+            qtyInput.dispatchEvent(new Event('input'));
+          };
+    
+          const remove = document.createElement('span');
+          remove.textContent = '🗑';
+          remove.className = 'cart-item-remove';
+          remove.onclick = () => {
+            qtyInput.value = '';
+            qtyInput.dispatchEvent(new Event('input'));
+          };
+    
+          controls.appendChild(minus);
+          controls.appendChild(qtyInput.cloneNode(true)); // הצגת כמות נוכחית ללא שינוי
+          controls.appendChild(plus);
+          controls.appendChild(remove);
+    
+          item.appendChild(name);
+          item.appendChild(controls);
+    
+          cartContainer.appendChild(item);
+        }
+      });
+    }
+
 
     function updateTotal() {
       let total = 0;
@@ -611,6 +707,7 @@
         promoContainer.style.display = "none";
         document.getElementById("promo").value = "";
       }
+      updateCart(); 
     }
   </script>
 </body>
