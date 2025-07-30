@@ -845,6 +845,17 @@
         }
         saveCartToLocalStorage();
         saveFormDataToLocalStorage();
+        ["fullname", "phone", "region", "notes", "promo"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener("input", saveFormDataToLocalStorage);
+        }
+      });
+      
+      document.getElementById("address-container").addEventListener("input", () => {
+        saveFormDataToLocalStorage(); // עבור כתובת (היא עשויה להיווצר דינמית)
+      });
+
       }
 
       let shipping = 0;
