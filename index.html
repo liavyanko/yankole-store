@@ -394,8 +394,10 @@
     <label for="phone">מספר טלפון</label>
     <input type="tel" id="phone" required pattern="^(\+9725\d{8}|05\d{8})$" title="נא להזין מספר טלפון חוקי בפורמט 0501234567 או +972501234567" />
 
-    <label for="address">כתובת מלאה</label>
-    <input type="text" id="address" required />
+    <label for="address">כתובת מלאה / נקודת איסוף</label>
+    <div id="address-container">
+      <input type="text" id="address" required />
+    </div>
 
     <label for="region">אזור מגורים</label>
     <select id="region" onchange="updateTotal()" required>
@@ -406,6 +408,7 @@
       <option value="שפלה">שפלה</option>
       <option value="חיפה">חיפה</option>
       <option value="צפון">צפון</option>
+      <option value="איסוף">איסוף עצמי</option>
       <option value="אחר">אחר</option>
     </select>
     <label for="search">חיפוש מוצר או קטגוריה</label>
@@ -854,6 +857,34 @@
       }
 
       const region = document.getElementById('region').value;
+      const addressContainer = document.getElementById('address-container');
+      
+      if (region === 'איסוף') {
+        const select = document.createElement('select');
+        select.id = 'address';
+        select.innerHTML = `
+          <option value="">בחר נקודת איסוף</option>
+          <option value="סניף ראשי - רעננה">סניף ראשי - רעננה</option>
+          <option value="נקודת חלוקה - תל אביב">נקודת חלוקה - תל אביב</option>
+          <option value="נקודת חלוקה - פרדס חנה">נקודת חלוקה - פרדס חנה</option>
+        `;
+        addressContainer.innerHTML = '';
+        addressContainer.appendChild(select);
+        select.required = false;
+        shipping = 0;
+        document.getElementById("shipping-note").textContent = '';
+      } else {
+        if (!addressContainer.querySelector('input')) {
+          const input = document.createElement('input');
+          input.type = 'text';
+          input.id = 'address';
+          input.required = true;
+          input.placeholder = 'הזן כתובת מלאה';
+          addressContainer.innerHTML = '';
+          addressContainer.appendChild(input);
+        }
+      }
+
       let shipping = 0;
       if (["שרון", "מרכז"].includes(region)) shipping = 10;
       else if (region === "תל אביב") shipping = 20;
