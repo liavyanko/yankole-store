@@ -1011,21 +1011,14 @@
       localStorage.setItem('cartData', JSON.stringify(cartData));
     }
       document.addEventListener("DOMContentLoaded", () => {
-        const fields = ["fullname", "phone", "region", "notes", "promo"];
-        fields.forEach(id => {
-          const el = document.getElementById(id);
-          if (el) {
-            el.addEventListener("input", saveFormDataToLocalStorage);
-            el.addEventListener("change", saveFormDataToLocalStorage);
-          }
-        });
-      
-        setupAddressListener();
-        restoreFormDataFromLocalStorage(); // כאן טוענים את מה שנשמר
-      
-      }); // ← זו הסגירה היחידה שצריכה להיות
-
-
+      const fields = ["fullname", "phone", "region", "notes", "promo"];
+      fields.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.addEventListener("input", saveFormDataToLocalStorage);
+          el.addEventListener("change", saveFormDataToLocalStorage);
+        }
+      });
     
       const regionField = document.getElementById("region");
       if (regionField) {
@@ -1036,15 +1029,17 @@
       }
     
       loadFormDataFromLocalStorage(); // טען כל מה שנשמר
-    // מאחר שהשדה כתובת לפעמים נוצר דינמית (input רגיל או disabled)
-    // נוסיף מאזין קטן אחרי טעינת הדף
-    setTimeout(() => {
-      const addressField = document.getElementById("address");
-      if (addressField && !addressField.disabled) {
-        addressField.addEventListener("input", saveFormDataToLocalStorage);
-      }
-    }, 300);
-  });
+    
+      // מאחר שהשדה כתובת לפעמים נוצר דינמית (input רגיל או disabled)
+      // נוסיף מאזין קטן אחרי טעינת הדף
+      setTimeout(() => {
+        const addressField = document.getElementById("address");
+        if (addressField && !addressField.disabled) {
+          addressField.addEventListener("input", saveFormDataToLocalStorage);
+        }
+      }, 300);
+    });
+
     
   function setupAddressListener() {
   const addressField = document.getElementById("address");
