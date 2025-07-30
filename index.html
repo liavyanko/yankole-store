@@ -314,6 +314,61 @@
     .hidden {
       display: none !important;
     }
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .popup-box {
+      background: #fff8e1;
+      border: 2px solid #ffc107;
+      border-radius: 12px;
+      padding: 30px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      animation: fadeIn 0.4s ease;
+      position: relative;
+    }
+    
+    .popup-box h2 {
+      margin-top: 0;
+      color: #ff6f00;
+    }
+    
+    .popup-box p {
+      font-size: 16px;
+      color: #5d4037;
+    }
+    
+    .popup-close {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: transparent;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #333;
+    }
+    
+    .hidden {
+      display: none;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
   </style>
 </head>
@@ -393,7 +448,15 @@
     <div id="shipping-note"></div>
 
   </div>
-  
+    <!-- פופ־אפ הטבה -->
+  <div id="gift-popup" class="hidden popup-overlay">
+    <div class="popup-box">
+      <button class="popup-close" onclick="closeGiftPopup()">✖</button>
+      <h2>מזל טוב! 🎉 הגעת להטבה</h2>
+      <p>עכשיו תוכל לבחור הטבה שווה מהתפריט למטה. אל תשכח להוסיף אותה להזמנה שלך!</p>
+    </div>
+  </div>
+
   <script>
     let products = [];
 
@@ -772,10 +835,12 @@
 
     function updateTotal() {
       let total = 0;
+      let subtotal = 0;
       products.forEach((product, index) => {
         const qtyInput = document.getElementById(`quantity-${index}`);
         const qty = parseFloat(qtyInput.value);
         if (!isNaN(qty)) {
+          subtotal += qty * product.price;
           total += qty * product.price;
           qtyInput.classList.remove('error');
         } else {
@@ -806,8 +871,23 @@
         promoContainer.style.display = "none";
         document.getElementById("promo").value = "";
       }
+      maybeShowGiftPopup(subtotal);
       updateCart(); 
     }
+    let giftShown = false; // משתנה כדי לוודא שהפופ־אפ לא יופיע שוב
+    
+    function maybeShowGiftPopup(subtotal) {
+      if (!giftShown && subtotal >= 300) {
+        document.getElementById("gift-popup").classList.remove("hidden");
+        giftShown = true;
+      }
+    }
+    
+    function closeGiftPopup() {
+      document.getElementById("gift-popup").classList.add("hidden");
+    }
+
+    
     function openCartModal() {
       updateCart();
       document.getElementById("cart-modal").classList.remove("hidden");
