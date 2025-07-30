@@ -1,276 +1,114 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ינקול'ה - הזמנות</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
-  <style>
-    body {
-      font-family: 'Rubik', sans-serif;
-      background: #f0f2f5;
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-    header {
-      text-align: center;
-      background: #ffffff;
-      padding: 20px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    }
-    header img {
-      max-width: 180px;
-      height: auto;
-    }
-    main {
-      max-width: 1000px;
-      margin: auto;
-      padding: 30px 20px;
-      background: #fff;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-      border-radius: 10px;
-      margin-top: 30px;
-      margin-bottom: 120px;
-    }
-    h1 {
-      text-align: center;
-      color: #3e2723;
-      margin-bottom: 10px;
-    }
-    .description {
-      font-size: 16px;
-      line-height: 1.6;
-      margin-bottom: 25px;
-      background-color: #fff8e1;
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px solid #ffe082;
-    }
-    label {
-      font-weight: 600;
-      margin-top: 15px;
-      display: block;
-    }
-    input, select, textarea {
-      width: 100%;
-      padding: 12px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
-    .quantity-controls {
-      display: flex;
-      flex-direction: row-reverse;
-      align-items: center;
-      gap: 8px;
-    }
-    .button-column {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-    .button-column button {
-      padding: 4px 10px;
-      font-size: 16px;
-      font-weight: bold;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      background: #eee;
-      cursor: pointer;
-      width: 36px;
-      height: 36px;
-      line-height: 1;
-    }
-    .quantity-controls input[type="number"] {
-      width: 70px;
-      height: 40px;
-      text-align: center;
-      font-size: 16px;
-    }
-    input:invalid {
-      border-color: red;
-    }
-    .error {
-      border-color: red;
-      background-color: #ffe6e6;
-    }
-    textarea {
-      resize: vertical;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      table-layout: fixed;
-    }
-    th, td {
-      padding: 12px;
-      border: 1px solid #ddd;
-      text-align: center;
-    }
-    th:nth-child(1), td:nth-child(1) {
-      width: 48%;
-    }
-    th:nth-child(2), td:nth-child(2) {
-      width: 22%;
-    }
-    th:nth-child(3), td:nth-child(3) {
-      width: 30%;
-    }
-    th {
-      background: #efebe9;
-      color: #4e342e;
-    }
-    .button {
-      background: #4caf50;
-      color: white;
-      border: none;
-      padding: 14px 24px;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      width: 100%;
-    }
-    .button:hover {
-      background: #388e3c;
-    }
-    #total-container {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #fff;
-      padding: 10px;
-      border-top: 2px solid #ccc;
-      text-align: center;
-      z-index: 100;
-    }
-    #total {
-      font-size: 20px;
-      font-weight: bold;
-    }
-    #shipping-note {
-      margin-top: 10px;
-      color: red;
-      font-weight: bold;
-      text-align: center;
-    }
-    #promo-container {
-      display: none;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <img src="logo.png" alt="לוגו ינקול'ה" />
-  </header>
-  <main>
-    <h1>טופס הזמנה - ינקול'ה</h1>
-    <div class="description">
-      <strong>ברוכים הבאים לחנות של ינקול'ה!</strong><br>
-      שמחים שבחרתם להזמין מאיתנו. בעמוד הזה תוכלו להרכיב הזמנה אישית מתוך מגוון מוצרים מובחרים.<br>
-      פשוט מלאו את הפרטים האישיים שלכם, בחרו את המוצרים שתרצו להזמין עם הכמות המתאימה, והמערכת תחשב לכם אוטומטית את הסכום הכולל כולל משלוח.<br>
-      שימו ❤️,  מוצרים הנמכרים לפי משקל ניתנים להזמנה החל מ-0.5 ק״ג, ובקפיצות של 0.1 ק״ג<br>
-      לאחר שתסיימו, לחצו על הכפתור בתחתית הדף וההזמנה תישלח אלינו ישירות בוואטסאפ.<br>
-      לשאלות ובירורים נוספים ניתן ליצור קשר בוואצאפ ל 050-936-9944 <br>
-      אם תגיעו ל-300 ₪ ומעלה תיפתח לכם האפשרות לבחור הטבה שווה !<br>
-      צוות ינקולה 🐿️
-    </div>
-    <label for="fullname">שם מלא</label>
-    <input type="text" id="fullname" required />
-
-    <label for="phone">מספר טלפון</label>
-    <input type="tel" id="phone" required pattern="^(\+9725\d{8}|05\d{8})$" title="נא להזין מספר טלפון חוקי בפורמט 0501234567 או +972501234567" />
-
-    <label for="address">כתובת מלאה</label>
-    <input type="text" id="address" required />
-
-    <label for="region">אזור מגורים</label>
-    <select id="region" onchange="updateTotal()" required>
-      <option value="">בחר אזור</option>
-      <option value="שרון">שרון</option>
-      <option value="מרכז">מרכז</option>
-      <option value="תל אביב">תל אביב</option>
-      <option value="שפלה">שפלה</option>
-      <option value="חיפה">חיפה</option>
-      <option value="צפון">צפון</option>
-      <option value="אחר">אחר</option>
-    </select>
-
+    <!DOCTYPE html>
+    <html lang="he" dir="rtl">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>ינקול'ה - הזמנות</title>
+      <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;600&display=swap" rel="stylesheet" />
+      <style>
+        body {
+          font-family: 'Rubik', sans-serif;
+          background: #f0f2f5;
+          margin: 0;
+          padding: 0;
+          color: #333;
+        }
+        .category-header {
+          background-color: #f9f9f9;
+          padding: 10px;
+          margin-top: 20px;
+          cursor: pointer;
+          font-weight: bold;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+        }
+        .category-products {
+          margin-top: 10px;
+        }
+        .hidden {
+          display: none;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 10px;
+          table-layout: fixed;
+        }
+        th, td {
+          padding: 12px;
+          border: 1px solid #ddd;
+          text-align: center;
+        }
+        th:nth-child(1), td:nth-child(1) {
+          width: 48%;
+        }
+        th:nth-child(2), td:nth-child(2) {
+          width: 22%;
+        }
+        th:nth-child(3), td:nth-child(3) {
+          width: 30%;
+        }
+        th {
+          background: #efebe9;
+          color: #4e342e;
+        }
+        .quantity-controls {
+          display: flex;
+          flex-direction: row-reverse;
+          align-items: center;
+          gap: 8px;
+        }
+        .button-column {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+        .button-column button {
+          padding: 4px 10px;
+          font-size: 16px;
+          font-weight: bold;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          background: #eee;
+          cursor: pointer;
+          width: 36px;
+          height: 36px;
+          line-height: 1;
+        }
+        .quantity-controls input[type="number"] {
+          width: 70px;
+          height: 40px;
+          text-align: center;
+          font-size: 16px;
+          box-sizing: border-box;
+          border-radius: 8px;
+          border: 1px solid #ccc;
+        }
+      </style>
+    </head>
+    <body>
     <div id="product-table"></div>
-
-    <div id="promo-container">
-      <label for="promo">בחר הטבה</label>
-      <select id="promo" onchange="updateTotal()">
-        <option value="">על מנת לקבל הטבה יש להרכיב סל ב-300 ש"ח לפחות</option>
-        <option value="10">סילאן טבעי לחיץ ב10₪ במקום 14₪</option>
-        <option value="16">צ׳יה שחורה חצי ק״ג ב16₪ במקום 22₪</option>
-        <option value="30">טחינה הר ברכה 1 ק״ג ב30₪ במקום 35₪</option>
-      </select>
-    </div>
-
-    <label for="notes">הערות</label>
-    <textarea id="notes" rows="3"></textarea>
-
-    <button class="button" onclick="sendToWhatsApp()">שלח הזמנה בוואטסאפ</button>
-  </main>
-
-  <div id="total-container">
-    <div id="total">סה"כ: 0 ₪</div>
-    <div id="shipping-note"></div>
-  </div>
-
-  <script>
+    <script>
     let products = [];
-
     fetch('products.json')
       .then(res => res.json())
       .then(data => {
         products = data;
         buildTable();
       });
-
-        function createQuantityControl(product, index) {
+    
+    function createQuantityControl(product, index) {
       const wrapper = document.createElement('div');
       wrapper.className = 'quantity-controls';
-      wrapper.style.display = 'flex';
-      wrapper.style.alignItems = 'center';
-      wrapper.style.justifyContent = 'center';
-      wrapper.style.gap = '8px';
-      wrapper.style.flexDirection = 'row-reverse';
     
       const buttonColumn = document.createElement('div');
       buttonColumn.className = 'button-column';
-      buttonColumn.style.display = 'flex';
-      buttonColumn.style.flexDirection = 'column';
-      buttonColumn.style.gap = '4px';
     
       const plus = document.createElement('button');
       plus.textContent = '+';
-      plus.style.width = '36px';
-      plus.style.height = '36px';
-      plus.style.fontSize = '16px';
-      plus.style.fontWeight = 'bold';
-      plus.style.border = '1px solid #ccc';
-      plus.style.borderRadius = '4px';
-      plus.style.background = '#eee';
-      plus.style.cursor = 'pointer';
     
       const minus = document.createElement('button');
       minus.textContent = '-';
-      minus.style.width = '36px';
-      minus.style.height = '36px';
-      minus.style.fontSize = '16px';
-      minus.style.fontWeight = 'bold';
-      minus.style.border = '1px solid #ccc';
-      minus.style.borderRadius = '4px';
-      minus.style.background = '#eee';
-      minus.style.cursor = 'pointer';
     
       const input = document.createElement('input');
       input.type = 'number';
@@ -278,13 +116,6 @@
       input.step = product.is_weighted ? 0.1 : 1;
       input.value = '';
       input.id = `quantity-${index}`;
-      input.style.width = '70px';
-      input.style.height = '40px';
-      input.style.textAlign = 'center';
-      input.style.fontSize = '16px';
-      input.style.boxSizing = 'border-box';
-      input.style.borderRadius = '8px';
-      input.style.border = '1px solid #ccc';
     
       minus.onclick = () => {
         let val = parseFloat(input.value);
@@ -317,97 +148,76 @@
     
       buttonColumn.appendChild(plus);
       buttonColumn.appendChild(minus);
-    
       wrapper.appendChild(buttonColumn);
       wrapper.appendChild(input);
     
       return wrapper;
     }
-    function sendToWhatsApp() {
-      const name = document.getElementById('fullname');
-      const phone = document.getElementById('phone');
-      const address = document.getElementById('address');
-      const region = document.getElementById('region');
-      const notes = document.getElementById('notes');
     
-      const scrollToAndAlert = (element, message) => {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        alert(message);
-        element.focus();
-      };
-    
-      const phonePattern = /^(\+9725\d{8}|05\d{8})$/;
-    
-      if (!name.value.trim()) return scrollToAndAlert(name, 'נא למלא את השם המלא');
-      if (!phone.value.trim() || !phonePattern.test(phone.value)) return scrollToAndAlert(phone, 'נא להזין מספר טלפון חוקי');
-      if (!address.value.trim()) return scrollToAndAlert(address, 'נא להזין כתובת מלאה');
-      if (!region.value) return scrollToAndAlert(region, 'נא לבחור אזור מגורים');
-    
-      let total = 0;
-      products.forEach((product, index) => {
-        const qtyInput = document.getElementById(`quantity-${index}`);
-        const qty = parseFloat(qtyInput.value);
-        if (!isNaN(qty)) total += qty * product.price;
-      });
-    
-      if (total === 0) {
-        alert('יש לבחור לפחות מוצר אחד להזמנה');
-        return;
-      }
-    
-      let message = `הזמנה מ: ${name.value}%0Aטלפון: ${phone.value}%0Aכתובת: ${address.value}%0Aאזור: ${region.value}%0A`;
-    
-      products.forEach((product, index) => {
-        const qtyInput = document.getElementById(`quantity-${index}`);
-        const qty = parseFloat(qtyInput.value);
-        if (!isNaN(qty)) {
-          message += `%0A${product.name} - ${qty} x ${product.price} ₪`;
-        }
-      });
-    
-      const totalText = document.getElementById("total").textContent;
-      message += `%0A%0A${totalText}`;
-    
-      if (notes && notes.value) {
-        message += `%0A%0Aהערות: ${notes.value}`;
-      }
-    
-      const url = `https://wa.me/972509369944?text=${message}`;
-      window.open(url, '_blank');
-    }
-
     function buildTable() {
       const container = document.getElementById('product-table');
-      const table = document.createElement('table');
-      const headerRow = document.createElement('tr');
-      ['מוצר', 'מחיר ליחידה (₪)', 'כמות'].forEach(text => {
-        const th = document.createElement('th');
-        th.textContent = text;
-        headerRow.appendChild(th);
-      });
-      table.appendChild(headerRow);
-
-      products.forEach((product, index) => {
-        const row = document.createElement('tr');
-
-        const nameCell = document.createElement('td');
-        nameCell.textContent = product.name;
-        row.appendChild(nameCell);
-
-        const priceCell = document.createElement('td');
-        priceCell.textContent = product.price.toFixed(2);
-        row.appendChild(priceCell);
-
-        const quantityCell = document.createElement('td');
-        const control = createQuantityControl(product, index);
-        quantityCell.appendChild(control);
-        row.appendChild(quantityCell);
-
-        table.appendChild(row);
-      });
-
       container.innerHTML = '';
-      container.appendChild(table);
+    
+      const categories = [];
+      const categoryMap = {};
+    
+      products.forEach(product => {
+        const cat = product.category || 'ללא קטגוריה';
+        if (!categoryMap[cat]) {
+          categoryMap[cat] = [];
+          categories.push(cat);
+        }
+        categoryMap[cat].push(product);
+      });
+    
+      categories.forEach(category => {
+        const section = document.createElement('div');
+        section.className = 'category-section';
+    
+        const header = document.createElement('div');
+        header.className = 'category-header';
+        header.textContent = category;
+    
+        const tableWrapper = document.createElement('div');
+        tableWrapper.className = 'category-products';
+    
+        const table = document.createElement('table');
+        const headerRow = document.createElement('tr');
+        ['מוצר', 'מחיר ליחידה (₪)', 'כמות'].forEach(text => {
+          const th = document.createElement('th');
+          th.textContent = text;
+          headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+    
+        categoryMap[category].forEach((product, index) => {
+          const row = document.createElement('tr');
+    
+          const nameCell = document.createElement('td');
+          nameCell.textContent = product.name;
+          row.appendChild(nameCell);
+    
+          const priceCell = document.createElement('td');
+          priceCell.textContent = product.price.toFixed(2);
+          row.appendChild(priceCell);
+    
+          const quantityCell = document.createElement('td');
+          const control = createQuantityControl(product, index);
+          quantityCell.appendChild(control);
+          row.appendChild(quantityCell);
+    
+          table.appendChild(row);
+        });
+    
+        tableWrapper.appendChild(table);
+        section.appendChild(header);
+        section.appendChild(tableWrapper);
+        container.appendChild(section);
+    
+        header.addEventListener('click', () => {
+          tableWrapper.classList.toggle('hidden');
+        });
+      });
     }
 
     function updateTotal() {
