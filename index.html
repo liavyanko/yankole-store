@@ -225,7 +225,8 @@
       <option value="צפון">צפון</option>
       <option value="אחר">אחר</option>
     </select>
-
+    <label for="search">חיפוש מוצר או קטגוריה</label>
+    <input type="text" id="search" placeholder="לדוגמה: אנטריקוט או בשר" oninput="filterProducts()" />
     <div id="product-table"></div>
 
     <div id="promo-container">
@@ -470,6 +471,34 @@
           tableWrapper.classList.toggle('hidden');
           header.classList.toggle('collapsed');
         });
+      });
+    }
+    function filterProducts() {
+      const searchValue = document.getElementById("search").value.trim().toLowerCase();
+      const sections = document.querySelectorAll(".category-section");
+    
+      sections.forEach(section => {
+        const categoryName = section.querySelector(".category-header").textContent.toLowerCase();
+        const products = section.querySelectorAll("table tr");
+    
+        // לבדוק אם יש מוצר מתאים או שהקטגוריה תואמת
+        let matchFound = categoryName.includes(searchValue);
+    
+        if (!matchFound) {
+          for (let i = 1; i < products.length; i++) { // מדלג על כותרת הטבלה
+            const productName = products[i].querySelector("td")?.textContent?.toLowerCase() || "";
+            if (productName.includes(searchValue)) {
+              matchFound = true;
+              break;
+            }
+          }
+        }
+    
+        if (searchValue === "" || matchFound) {
+          section.style.display = "block";
+        } else {
+          section.style.display = "none";
+        }
       });
     }
 
