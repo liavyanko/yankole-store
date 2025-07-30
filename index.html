@@ -907,7 +907,7 @@
         const qtyInput = document.getElementById(`quantity-${index}`);
         const qty = parseFloat(qtyInput.value);
         if (!isNaN(qty) && qty > 0) {
-          totalItems += qty;
+          totalItems += product.is_weighted ? 1 : qty;
           totalPrice += qty * product.price;
     
           const itemDiv = document.createElement("div");
