@@ -417,6 +417,8 @@
         categoryMap[cat].push(product);
       });
     
+      let globalIndex = 0; // מונה כולל לכל המוצרים
+    
       categories.forEach(category => {
         const section = document.createElement('div');
         section.className = 'category-section';
@@ -437,7 +439,7 @@
         });
         table.appendChild(headerRow);
     
-        categoryMap[category].forEach((product, index) => {
+        categoryMap[category].forEach(product => {
           const row = document.createElement('tr');
     
           const nameCell = document.createElement('td');
@@ -449,11 +451,13 @@
           row.appendChild(priceCell);
     
           const quantityCell = document.createElement('td');
-          const control = createQuantityControl(product, index);
+          const control = createQuantityControl(product, globalIndex);
           quantityCell.appendChild(control);
           row.appendChild(quantityCell);
     
           table.appendChild(row);
+    
+          globalIndex++; // הגדלת המונה בכל מוצר
         });
     
         tableWrapper.appendChild(table);
@@ -461,7 +465,7 @@
         section.appendChild(tableWrapper);
         container.appendChild(section);
     
-        // Toggle open/close with arrow rotation
+        // פתיחה וסגירה של הקטגוריה עם חץ
         header.addEventListener('click', () => {
           tableWrapper.classList.toggle('hidden');
           header.classList.toggle('collapsed');
