@@ -227,6 +227,96 @@
       cursor: pointer;
       font-weight: bold;
     }
+    #cart-button {
+      position: fixed;
+      left: 15px;
+      bottom: 70px;
+      background: #ff9800;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 101;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    
+    #cart-modal {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: rgba(0,0,0,0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 200;
+    }
+    
+    #cart-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      max-height: 80vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    
+    #close-cart {
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-size: 24px;
+      cursor: pointer;
+      color: #444;
+    }
+    
+    #cart-items {
+      margin-top: 30px;
+    }
+    
+    #cart-items .cart-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 15px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 8px;
+    }
+    
+    #cart-items .cart-item span {
+      display: inline-block;
+      font-size: 14px;
+    }
+    
+    #cart-items .cart-item .controls {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    
+    #cart-items button {
+      background: #eee;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 30px;
+      height: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    #cart-summary {
+      margin-top: 20px;
+      font-size: 16px;
+      text-align: center;
+    }
+    
+    .hidden {
+      display: none;
+    }
 
   </style>
 </head>
@@ -289,6 +379,21 @@
 
     <button class="button" onclick="sendToWhatsApp()">שלח הזמנה בוואטסאפ</button>
   </main>
+  <!-- כפתור לפתיחת העגלה -->
+  <button id="cart-button" onclick="openCartModal()">🛒 העגלה שלי (<span id="cart-count">0</span>)</button>
+  
+  <!-- חלון קופץ של עגלה -->
+  <div id="cart-modal" class="hidden">
+    <div id="cart-content">
+      <span id="close-cart" onclick="closeCartModal()">✖</span>
+      <h2>העגלה שלך</h2>
+      <div id="cart-items"></div>
+      <div id="cart-summary">
+        <strong>סה"כ מוצרים:</strong> <span id="cart-total-items">0</span><br>
+        <strong>סה"כ לתשלום:</strong> <span id="cart-total-price">0 ₪</span>
+      </div>
+    </div>
+  </div>
 
   <div id="total-container">
     <div id="total">סה"כ: 0 ₪</div>
@@ -709,6 +814,81 @@
       }
       updateCart(); 
     }
+    function openCartModal() {
+      updateCart();
+      document.getElementById("cart-modal").classList.remove("hidden");
+    }
+    
+    function closeCartModal() {
+      document.getElementById("cart-modal").classList.add("hidden");
+    }
+    
+    function updateCart() {
+      const cartItemsDiv = document.getElementById("cart-items");
+      cartItemsDiv.innerHTML = "";
+      let totalItems = 0;
+      let totalPrice = 0;
+    
+      products.forEach((product, index) => {
+        const qtyInput = document.getElementById(`quantity-${index}`);
+        const qty = parseFloat(qtyInput.value);
+        if (!isNaN(qty) && qty > 0) {
+          totalItems += qty;
+          totalPrice += qty * product.price;
+    
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "cart-item";
+    
+          const nameSpan = document.createElement("span");
+          nameSpan.textContent = product.name;
+    
+          const controlsDiv = document.createElement("div");
+          controlsDiv.className = "controls";
+    
+          const minusBtn = document.createElement("button");
+          minusBtn.textContent = "-";
+          minusBtn.onclick = () => {
+            qtyInput.stepUp(-1);
+            qtyInput.dispatchEvent(new Event("input"));
+            updateCart();
+          };
+    
+          const qtySpan = document.createElement("span");
+          qtySpan.textContent = qty;
+    
+          const plusBtn = document.createElement("button");
+          plusBtn.textContent = "+";
+          plusBtn.onclick = () => {
+            qtyInput.stepUp(1);
+            qtyInput.dispatchEvent(new Event("input"));
+            updateCart();
+          };
+    
+          const deleteBtn = document.createElement("button");
+          deleteBtn.textContent = "🗑️";
+          deleteBtn.onclick = () => {
+            qtyInput.value = "";
+            qtyInput.dispatchEvent(new Event("input"));
+            updateCart();
+          };
+    
+          controlsDiv.appendChild(minusBtn);
+          controlsDiv.appendChild(qtySpan);
+          controlsDiv.appendChild(plusBtn);
+          controlsDiv.appendChild(deleteBtn);
+    
+          itemDiv.appendChild(nameSpan);
+          itemDiv.appendChild(controlsDiv);
+          cartItemsDiv.appendChild(itemDiv);
+        }
+      });
+    
+      document.getElementById("cart-total-items").textContent = totalItems;
+      document.getElementById("cart-total-price").textContent = totalPrice.toFixed(2) + " ₪";
+      document.getElementById("cart-count").textContent = totalItems;
+    }
+
+    
   </script>
 </body>
 </html>
