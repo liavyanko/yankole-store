@@ -866,27 +866,15 @@
           `;
           shipping = 0;
           document.getElementById("shipping-note").textContent = '';
-        
-          setTimeout(() => {
-            updateCart();
-            updateTotal();
-          }, 0); // מאפשר ל-DOM להתעדכן לפני הריצה
+          calculateTotal(); // ← עדכן את הסה"כ מידית
         } else {
           if (!addressContainer.querySelector('input:not([disabled])')) {
             addressContainer.innerHTML = `<input type="text" id="address" required />`;
             setupAddressListener();
           }
-        
-          setTimeout(() => {
-            saveCartToLocalStorage();
-            updateCart();
-            updateTotal();
-          }, 0);
+          // נחשב שוב גם כשזה לא איסוף עצמי
+          calculateTotal(); 
         }
-
-
-
-
 
       let shipping = 0;
       if (["שרון", "מרכז"].includes(region)) shipping = 10;
@@ -907,6 +895,7 @@
       }
       maybeShowGiftPopup(subtotal);
       updateCart(); 
+      calculateTotal(); // ← זו השורה שדואגת לסה"כ
     }
     let giftShown = false; // משתנה כדי לוודא שהפופ־אפ לא יופיע שוב
       function saveFormDataToLocalStorage() {
