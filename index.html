@@ -860,20 +860,26 @@
       const region = document.getElementById('region').value;
       const addressContainer = document.getElementById('address-container');
       
-      if (region === 'איסוף') {
-        addressContainer.innerHTML = `
-          <input type="text" id="address" value="הזית 43 אורנית" disabled />
-        `;
-        shipping = 0;
-        document.getElementById("shipping-note").textContent = '';
-      } else {
-        if (!addressContainer.querySelector('input:not([disabled])')) {
-          addressContainer.innerHTML = `<input type="text" id="address" required />`;
-          setupAddressListener(); // ← שים כאן
+        if (region === 'איסוף') {
+          addressContainer.innerHTML = `
+            <input type="text" id="address" value="הזית 43 אורנית" disabled />
+          `;
+          shipping = 0;
+          document.getElementById("shipping-note").textContent = '';
+        
+          updateCart();
+          updateTotal();
+        } else {
+          if (!addressContainer.querySelector('input:not([disabled])')) {
+            addressContainer.innerHTML = `<input type="text" id="address" required />`;
+            setupAddressListener();
+          }
+        
+          saveCartToLocalStorage();
+          updateCart();
+          updateTotal();
         }
 
-        saveCartToLocalStorage();
-      }
 
       let shipping = 0;
       if (["שרון", "מרכז"].includes(region)) shipping = 10;
