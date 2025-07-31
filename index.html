@@ -480,8 +480,12 @@
         .then(data => {
           products = data;
           buildTable();
-          restoreCartFromLocalStorage();      // ← לשחזר את כמויות המוצרים
-          restoreFormDataFromLocalStorage();  // ← לשחזר את שדות הטופס
+          
+          // טוען את סל הקניות והשדות רק אחרי שהטבלה נבנתה
+          loadCartFromLocalStorage();
+          loadFormDataFromLocalStorage();
+          updateCart();
+          updateTotal();
         });
 
 
