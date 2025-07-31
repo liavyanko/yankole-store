@@ -867,18 +867,23 @@
           shipping = 0;
           document.getElementById("shipping-note").textContent = '';
         
-          updateCart();
-          updateTotal();
+          setTimeout(() => {
+            updateCart();
+            updateTotal();
+          }, 0); // מאפשר ל-DOM להתעדכן לפני הריצה
         } else {
           if (!addressContainer.querySelector('input:not([disabled])')) {
             addressContainer.innerHTML = `<input type="text" id="address" required />`;
             setupAddressListener();
           }
         
-          saveCartToLocalStorage();
-          updateCart();
-          updateTotal();
+          setTimeout(() => {
+            saveCartToLocalStorage();
+            updateCart();
+            updateTotal();
+          }, 0);
         }
+
 
 
       let shipping = 0;
