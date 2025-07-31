@@ -177,7 +177,7 @@
       float: left;
       transition: transform 0.3s ease;
     }
-    
+
     .category-header.collapsed::after {
       transform: rotate(-90deg);
     }
@@ -238,7 +238,7 @@
       z-index: 101;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
     }
-    
+
     #cart-modal {
       position: fixed;
       top: 0;
@@ -251,7 +251,7 @@
       align-items: center;
       z-index: 200;
     }
-    
+
     #cart-content {
       background: white;
       padding: 20px;
@@ -262,7 +262,7 @@
       overflow-y: auto;
       position: relative;
     }
-    
+
     #close-cart {
       position: absolute;
       top: 10px;
@@ -271,11 +271,11 @@
       cursor: pointer;
       color: #444;
     }
-    
+
     #cart-items {
       margin-top: 30px;
     }
-    
+
     #cart-items .cart-item {
       display: flex;
       justify-content: space-between;
@@ -283,18 +283,18 @@
       border-bottom: 1px solid #eee;
       padding-bottom: 8px;
     }
-    
+
     #cart-items .cart-item span {
       display: inline-block;
       font-size: 14px;
     }
-    
+
     #cart-items .cart-item .controls {
       display: flex;
       gap: 6px;
       align-items: center;
     }
-    
+
     #cart-items button {
       background: #eee;
       border: 1px solid #ccc;
@@ -304,13 +304,13 @@
       font-weight: bold;
       cursor: pointer;
     }
-    
+
     #cart-summary {
       margin-top: 20px;
       font-size: 16px;
       text-align: center;
     }
-    
+
     .hidden {
       display: none !important;
     }
@@ -326,7 +326,7 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     .popup-box {
       background: #fff8e1;
       border: 2px solid #ffc107;
@@ -339,17 +339,17 @@
       animation: fadeIn 0.4s ease;
       position: relative;
     }
-    
+
     .popup-box h2 {
       margin-top: 0;
       color: #ff6f00;
     }
-    
+
     .popup-box p {
       font-size: 16px;
       color: #5d4037;
     }
-    
+
     .popup-close {
       position: absolute;
       top: 10px;
@@ -360,11 +360,11 @@
       cursor: pointer;
       color: #333;
     }
-    
+
     .hidden {
       display: none;
     }
-    
+
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.9); }
       to { opacity: 1; transform: scale(1); }
@@ -444,7 +444,7 @@
   </main>
   <!-- כפתור לפתיחת העגלה -->
   <button id="cart-button" onclick="openCartModal()">🛒 העגלה שלי (<span id="cart-count">0</span>)</button>
-  
+
   <!-- חלון קופץ של עגלה -->
   <div id="cart-modal" class="hidden">
     <div id="cart-content">
@@ -474,13 +474,13 @@
 
   <script>
     let products = [];
-      
+
       fetch('products.json')
         .then(res => res.json())
         .then(data => {
           products = data;
           buildTable();
-          
+
           // טוען את סל הקניות והשדות רק אחרי שהטבלה נבנתה
           loadCartFromLocalStorage();
           loadFormDataFromLocalStorage();
@@ -668,14 +668,14 @@
       localStorage.removeItem('cartData');
 
     }
-    
+
     function buildTable() {
       const container = document.getElementById('product-table');
       container.innerHTML = '';
-    
+
       const categories = [];
       const categoryMap = {};
-    
+
       products.forEach(product => {
         const cat = product.category || 'ללא קטגוריה';
         if (!categoryMap[cat]) {
@@ -684,20 +684,20 @@
         }
         categoryMap[cat].push(product);
       });
-    
+
       let globalIndex = 0; // מונה כולל לכל המוצרים
-    
+
       categories.forEach(category => {
         const section = document.createElement('div');
         section.className = 'category-section';
-    
+
         const header = document.createElement('div');
         header.className = 'category-header collapsed';
         header.textContent = category;
-    
+
         const tableWrapper = document.createElement('div');
         tableWrapper.className = 'category-products hidden';
-    
+
         const table = document.createElement('table');
         const headerRow = document.createElement('tr');
         ['מוצר', 'מחיר ליחידה (₪)', 'כמות'].forEach(text => {
@@ -706,33 +706,33 @@
           headerRow.appendChild(th);
         });
         table.appendChild(headerRow);
-    
+
         categoryMap[category].forEach(product => {
           const row = document.createElement('tr');
-    
+
           const nameCell = document.createElement('td');
           nameCell.textContent = product.name;
           row.appendChild(nameCell);
-    
+
           const priceCell = document.createElement('td');
           priceCell.textContent = product.price.toFixed(2);
           row.appendChild(priceCell);
-    
+
           const quantityCell = document.createElement('td');
           const control = createQuantityControl(product, globalIndex);
           quantityCell.appendChild(control);
           row.appendChild(quantityCell);
-    
+
           table.appendChild(row);
-    
+
           globalIndex++; // הגדלת המונה בכל מוצר
         });
-    
+
         tableWrapper.appendChild(table);
         section.appendChild(header);
         section.appendChild(tableWrapper);
         container.appendChild(section);
-    
+
         // פתיחה וסגירה של הקטגוריה עם חץ
         header.addEventListener('click', () => {
           tableWrapper.classList.toggle('hidden');
@@ -744,20 +744,20 @@
     const input = document.getElementById('search');
     const list = document.getElementById('autocomplete-list');
     const searchTerm = input.value.trim().toLowerCase();
-    
+
     list.innerHTML = ''; // נקה הצעות ישנות
-  
+
     if (searchTerm === '') {
       buildTable(); // בנה את הטבלה מחדש
       return;
     }
-  
+
     const matches = products.filter(p => p.name.toLowerCase().includes(searchTerm));
-    
+
     if (matches.length === 0) {
       return;
     }
-  
+
     matches.forEach(match => {
       const item = document.createElement('li');
       item.textContent = match.name;
@@ -765,13 +765,13 @@
       item.style.padding = '8px';
       item.style.borderBottom = '1px solid #ccc';
       item.style.backgroundColor = '#fff';
-  
+
       item.addEventListener('click', () => {
         input.value = match.name;
         list.innerHTML = '';
         showOnlyProduct(match.name);
       });
-  
+
       list.appendChild(item);
     });
   }
@@ -810,14 +810,14 @@
     function filterProducts() {
       const searchValue = document.getElementById("search").value.trim().toLowerCase();
       const sections = document.querySelectorAll(".category-section");
-    
+
       sections.forEach(section => {
         const categoryName = section.querySelector(".category-header").textContent.toLowerCase();
         const products = section.querySelectorAll("table tr");
-    
+
         // לבדוק אם יש מוצר מתאים או שהקטגוריה תואמת
         let matchFound = categoryName.includes(searchValue);
-    
+
         if (!matchFound) {
           for (let i = 1; i < products.length; i++) { // מדלג על כותרת הטבלה
             const productName = products[i].querySelector("td")?.textContent?.toLowerCase() || "";
@@ -827,7 +827,7 @@
             }
           }
         }
-    
+
         if (searchValue === "" || matchFound) {
           section.style.display = "block";
         } else {
@@ -859,22 +859,34 @@
 
       const region = document.getElementById('region').value;
       const addressContainer = document.getElementById('address-container');
-      
+
         if (region === 'איסוף') {
           addressContainer.innerHTML = `
             <input type="text" id="address" value="הזית 43 אורנית" disabled />
           `;
           shipping = 0;
           document.getElementById("shipping-note").textContent = '';
-          calculateTotal(); // ← עדכן את הסה"כ מידית
+
+          setTimeout(() => {
+            updateCart();
+            updateTotal();
+          }, 0); // מאפשר ל-DOM להתעדכן לפני הריצה
         } else {
           if (!addressContainer.querySelector('input:not([disabled])')) {
             addressContainer.innerHTML = `<input type="text" id="address" required />`;
             setupAddressListener();
           }
-          // נחשב שוב גם כשזה לא איסוף עצמי
-          calculateTotal(); 
+
+          setTimeout(() => {
+            saveCartToLocalStorage();
+            updateCart();
+            updateTotal();
+          }, 0);
         }
+
+
+
+
 
       let shipping = 0;
       if (["שרון", "מרכז"].includes(region)) shipping = 10;
@@ -894,8 +906,7 @@
         document.getElementById("promo").value = "";
       }
       maybeShowGiftPopup(subtotal);
-      updateCart(); 
-      calculateTotal(); // ← זו השורה שדואגת לסה"כ
+      updateCart();
     }
     let giftShown = false; // משתנה כדי לוודא שהפופ־אפ לא יופיע שוב
       function saveFormDataToLocalStorage() {
@@ -907,28 +918,28 @@
           notes: document.getElementById("notes").value,
           promo: document.getElementById("promo").value
         };
-      
+
         localStorage.setItem("formData", JSON.stringify(formData));
       }
 
       function restoreFormDataFromLocalStorage() {
         const formData = JSON.parse(localStorage.getItem("formData") || "{}");
-      
+
         document.getElementById("fullname").value = formData.fullname || "";
         document.getElementById("phone").value = formData.phone || "";
         document.getElementById("notes").value = formData.notes || "";
         document.getElementById("region").value = formData.region || "";
         document.getElementById("promo").value = formData.promo || "";
-      
+
         if (formData.address && document.getElementById("address") && !document.getElementById("address").disabled) {
           document.getElementById("address").value = formData.address;
         }
       }
 
-    
+
     function restoreCartFromLocalStorage() {
       const savedCart = JSON.parse(localStorage.getItem("cartData") || "{}");
-    
+
       products.forEach((product, index) => {
         const qty = savedCart[index];
         const input = document.getElementById(`quantity-${index}`);
@@ -936,7 +947,7 @@
           input.value = qty;
         }
       });
-    
+
       updateTotal();
     }
 
@@ -946,43 +957,43 @@
         giftShown = true;
       }
     }
-    
+
     function closeGiftPopup() {
       document.getElementById("gift-popup").classList.add("hidden");
     }
 
-    
+
     function openCartModal() {
       updateCart();
       document.getElementById("cart-modal").classList.remove("hidden");
     }
-    
+
     function closeCartModal() {
       document.getElementById("cart-modal").classList.add("hidden");
     }
-    
+
     function updateCart() {
       const cartItemsDiv = document.getElementById("cart-items");
       cartItemsDiv.innerHTML = "";
       let totalItems = 0;
       let totalPrice = 0;
-    
+
       products.forEach((product, index) => {
         const qtyInput = document.getElementById(`quantity-${index}`);
         const qty = parseFloat(qtyInput.value);
         if (!isNaN(qty) && qty > 0) {
           totalItems += product.is_weighted ? 1 : qty;
           totalPrice += qty * product.price;
-    
+
           const itemDiv = document.createElement("div");
           itemDiv.className = "cart-item";
-    
+
           const nameSpan = document.createElement("span");
           nameSpan.textContent = product.name;
-    
+
           const controlsDiv = document.createElement("div");
           controlsDiv.className = "controls";
-    
+
           const minusBtn = document.createElement("button");
           minusBtn.textContent = "-";
           minusBtn.onclick = () => {
@@ -990,10 +1001,10 @@
             qtyInput.dispatchEvent(new Event("input"));
             updateCart();
           };
-    
+
           const qtySpan = document.createElement("span");
           qtySpan.textContent = qty;
-    
+
           const plusBtn = document.createElement("button");
           plusBtn.textContent = "+";
           plusBtn.onclick = () => {
@@ -1001,7 +1012,7 @@
             qtyInput.dispatchEvent(new Event("input"));
             updateCart();
           };
-    
+
           const deleteBtn = document.createElement("button");
           deleteBtn.textContent = "🗑️";
           deleteBtn.onclick = () => {
@@ -1009,18 +1020,18 @@
             qtyInput.dispatchEvent(new Event("input"));
             updateCart();
           };
-    
+
           controlsDiv.appendChild(minusBtn);
           controlsDiv.appendChild(qtySpan);
           controlsDiv.appendChild(plusBtn);
           controlsDiv.appendChild(deleteBtn);
-    
+
           itemDiv.appendChild(nameSpan);
           itemDiv.appendChild(controlsDiv);
           cartItemsDiv.appendChild(itemDiv);
         }
       });
-    
+
       document.getElementById("cart-total-items").textContent = totalItems;
       document.getElementById("cart-total-price").textContent = totalPrice.toFixed(2) + " ₪";
       document.getElementById("cart-count").textContent = totalItems;
@@ -1043,7 +1054,7 @@
           el.addEventListener("change", saveFormDataToLocalStorage);
         }
       });
-        
+
       const regionField = document.getElementById("region");
       if (regionField) {
         regionField.addEventListener("change", () => {
@@ -1059,7 +1070,7 @@
       }, 150);
 
       loadFormDataFromLocalStorage(); // טען כל מה שנשמר
-    
+
       // מאחר שהשדה כתובת לפעמים נוצר דינמית (input רגיל או disabled)
       // נוסיף מאזין קטן אחרי טעינת הדף
       setTimeout(() => {
@@ -1070,7 +1081,7 @@
       }, 300);
     });
 
-    
+
   function setupAddressListener() {
   const addressField = document.getElementById("address");
   if (addressField && !addressField.disabled && !addressField.dataset.listenerAttached) {
@@ -1079,7 +1090,7 @@
   }
 }
 
-          
+
   </script>
 </body>
 </html>
