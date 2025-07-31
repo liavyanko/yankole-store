@@ -1037,15 +1037,21 @@
           el.addEventListener("change", saveFormDataToLocalStorage);
         }
       });
-    
+        
       const regionField = document.getElementById("region");
       if (regionField) {
         regionField.addEventListener("change", () => {
-          updateTotal(); // זה גם יוצר את שדה הכתובת מחדש אם צריך
-          saveFormDataToLocalStorage(); // וגם שומר מיידית
+          setTimeout(() => {
+            updateTotal(); // זה גם יוצר את שדה הכתובת מחדש אם צריך
+            saveFormDataToLocalStorage(); // וגם שומר מיידית
+          }, 100);
         });
       }
-    
+      setTimeout(() => {
+        loadFormDataFromLocalStorage();
+        updateCart();
+      }, 150);
+
       loadFormDataFromLocalStorage(); // טען כל מה שנשמר
     
       // מאחר שהשדה כתובת לפעמים נוצר דינמית (input רגיל או disabled)
