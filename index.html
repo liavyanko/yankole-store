@@ -864,29 +864,18 @@
           addressContainer.innerHTML = `
             <input type="text" id="address" value="הזית 43 אורנית" disabled />
           `;
-          document.getElementById("shipping-note").textContent = '';
-          
-          // נוודא ש-shipping מאופס לפני העדכון
           shipping = 0;
+          document.getElementById("shipping-note").textContent = '';
         
           setTimeout(() => {
-            saveCartToLocalStorage();
             updateCart();
             updateTotal();
-          }, 0);
+          }, 0); // מאפשר ל-DOM להתעדכן לפני הריצה
         } else {
           if (!addressContainer.querySelector('input:not([disabled])')) {
             addressContainer.innerHTML = `<input type="text" id="address" required />`;
             setupAddressListener();
           }
-        
-          // נחשב משלוח לפי האזור שנבחר
-          const shippingCosts = {
-            "תל אביב": 20,
-            "רעננה": 10,
-            "פרדס חנה": 15
-          };
-          shipping = shippingCosts[region] || 0;
         
           setTimeout(() => {
             saveCartToLocalStorage();
@@ -894,6 +883,7 @@
             updateTotal();
           }, 0);
         }
+
 
 
 
